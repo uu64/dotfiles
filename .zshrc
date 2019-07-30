@@ -1,7 +1,8 @@
-#  _______| |__  _ __ ___ 
-# |_  / __| '_ \| '__/ __|
-#  / /\__ \ | | | | | (__ 
-# /___|___/_| |_|_|  \___|
+#            _
+#    _______| |__  _ __ ___
+#   |_  / __| '_ \| '__/ __|
+#  _ / /\__ \ | | | | | (__
+# (_)___|___/_| |_|_|  \___|
 
 # init
 source ~/.zplug/init.zsh
@@ -51,7 +52,7 @@ bindkey '^N' history-substring-search-down
 
 
 # fzf
-export FZF_DEFAULT_OPTS="--layout reverse --no-sort"
+export FZF_DEFAULT_OPTS="--exact --layout reverse --no-sort"
 function select-history() {
   BUFFER=$(history -n -r 1 | fzf)
   CURSOR=$#BUFFER
@@ -70,6 +71,12 @@ export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HOME=1
 
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 # my command
 export PATH=$PATH:$HOME/mycmd
 
@@ -79,6 +86,7 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
 alias ls='ls -h --color=always'
+alias diff='diff -u --color'
 
 alias vi='nvim'
 alias nvi='nvim'
