@@ -4,12 +4,20 @@
 "  \ V /| | | | | | | | | (__
 " (_)_/ |_|_| |_| |_|_|  \___|
 
+" Appearance
+set background=dark
+set cursorline
+set title
+set number
+set numberwidth=5
+set list
+set listchars=eol:¬,tab:▸\ ,space:.
+" set noshowmode
+
 " Indent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set list
-set listchars=tab:»-,nbsp:%
 
 " Fold
 set foldlevel=100
@@ -26,12 +34,6 @@ set clipboard=unnamed,unnamedplus
 if has('nvim')
   set inccommand=split
 endif
-
-" Other
-set cursorline
-set title
-set number
-" set noshowmode
 
 " FIle Types
 augroup vimrc_filetype
@@ -51,11 +53,23 @@ noremap <Leader>h ^
 noremap <Leader>H 0
 noremap <Leader>l $
 
+" Move windows
+nnoremap <Leader><Tab> <C-w>w
+nnoremap sh <C-w>h
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap st <C-w>t
+nnoremap sb <C-w>b
+
 " Plugins
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin('~/.vim/dein')
 
-call dein#add('Yggdroot/indentLine')
+call dein#add('cocopon/iceberg.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('tpope/vim-fugitive')
+call dein#add('ryanoasis/vim-devicons')
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
 endif
@@ -66,6 +80,31 @@ call dein#add('rcmdnk/vim-markdown', {'on_ft' : ['markdown', 'txt']})
 
 call dein#end()
 
+" itchyny/lightline.vim
+let g:lightline = {
+    \ 'colorscheme': 'seoul256',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head',
+    \   'filetype': 'MyFiletype',
+    \   'fileformat': 'MyFileformat',
+    \ },
+    \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+" Color Scheme
+colorscheme iceberg
+
 " finally
 filetype plugin indent on
 syntax enable
@@ -73,3 +112,4 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
+call map(dein#check_clean(), "delete(v:val, 'rf')")
