@@ -44,14 +44,24 @@ zstyle ':completion:*:default' menu select=2
 bindkey "^[[Z" reverse-menu-complete
 
 
-# zsh-history-substring-search
+# sindresorhus/pure
+PURE_PROMPT_SYMBOL='$'
+
+
+# zsh-users/zsh-history-substring-search
 bindkey '\eOA' history-substring-search-up
 bindkey '^P' history-substring-search-up
 bindkey '\eOB' history-substring-search-down
 bindkey '^N' history-substring-search-down
 
 
-# fzf
+# b4b4r07/enhancd
+export ENHANCD_FILTER=fzf
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HOME=1
+
+
+# junegunn/fzf-bin
 export FZF_DEFAULT_OPTS="--exact --layout reverse --no-sort"
 function select-history() {
   BUFFER=$(history -n -r 1 | fzf)
@@ -63,12 +73,6 @@ bindkey '^r' select-history
 
 # awscli
 source "$(pyenv which aws_zsh_completer.sh)"
-
-
-# enhancd
-export ENHANCD_FILTER=fzf
-export ENHANCD_DISABLE_DOT=1
-export ENHANCD_DISABLE_HOME=1
 
 
 # nvm
