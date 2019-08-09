@@ -68,8 +68,9 @@ call dein#begin('~/.vim/dein')
 
 call dein#add('cocopon/iceberg.vim')
 call dein#add('itchyny/lightline.vim')
-call dein#add('tpope/vim-fugitive')
 call dein#add('ryanoasis/vim-devicons')
+call dein#add('tpope/vim-commentary')
+call dein#add('tpope/vim-fugitive')
 if has('nvim')
   call dein#add('Shougo/deoplete.nvim')
 endif

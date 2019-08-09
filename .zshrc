@@ -90,6 +90,9 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
 alias ls='ls -h --color=always'
+
+alias grep='grep --color=always'
+
 alias diff='diff -u --color'
 
 alias vi='nvim'
