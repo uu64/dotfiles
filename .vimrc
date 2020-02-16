@@ -11,7 +11,6 @@ endif
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Appearance
-set background=dark
 set cursorline
 set title
 set number
@@ -41,7 +40,7 @@ if has('nvim')
   set inccommand=split
 endif
 
-" FIle Types
+" File Types
 augroup vimrc_filetype
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
