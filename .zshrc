@@ -60,6 +60,7 @@ bindkey '^N' history-substring-search-down
 # b4b4r07/enhancd
 export ENHANCD_FILTER=fzf
 export ENHANCD_DISABLE_HOME=1
+export ENHANCD_DOT_ARG=...
 export ENHANCD_HYPHEN_NUM=100
 
 
