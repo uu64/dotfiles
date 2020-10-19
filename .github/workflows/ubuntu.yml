@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+      - feature/*
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test
+        run: echo success
+      # - name: Setup NodeJs
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "12.x"
+      # - name: Info
+      #   run: |
+      #     echo "node: `node --version`"
+      #     echo "npm:  v`npm --version`"
+      #     echo "yarn: v`yarn --version`"
+      #     git status
+      # - name: Install Dependencies
+      #   run: yarn
+      # - name: Lint
+      #   run: yarn lint
+      # - name: Test
+      #   run: yarn test
