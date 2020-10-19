@@ -36,10 +36,12 @@ setopt inc_append_history
 setopt share_history
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
+setopt nonomatch
 
 
 # complement
 autoload -U compinit && compinit
+autoload bashcompinit && bashcompinit
 zstyle ':completion:*:default' menu select=2
 bindkey "^[[Z" reverse-menu-complete
 
@@ -57,8 +59,8 @@ bindkey '^N' history-substring-search-down
 
 # b4b4r07/enhancd
 export ENHANCD_FILTER=fzf
-export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HOME=1
+export ENHANCD_HYPHEN_NUM=100
 
 
 # junegunn/fzf-bin
@@ -72,7 +74,7 @@ bindkey '^r' select-history
 
 
 # awscli
-source "$(pyenv which aws_zsh_completer.sh)"
+complete -C "$(which aws_completer)" aws
 
 
 # nvm
@@ -82,7 +84,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # my command
-export PATH=$PATH:$HOME/mycmd
+# export PATH=$PATH:$HOME/mycmd
+export PATH=$PATH$(find $HOME/mycmd -type d | xargs -I % echo -n :%)
 
 
 # alias
@@ -90,10 +93,9 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
 alias ls='ls -h --color=always'
-
-alias grep='grep --color=always'
-
+#alias grep='grep --color=always'
 alias diff='diff -u --color'
+alias less='less -R'
 
 alias vi='nvim'
 alias nvi='nvim'
