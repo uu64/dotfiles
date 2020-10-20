@@ -20,7 +20,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv --upgrade-strategy=only-if-needed
           pipenv install --dev
-          ansible --version
+          pipenv run ansible --version
       # - name: Setup NodeJs
       #   uses: actions/setup-node@v1
       #   with:
