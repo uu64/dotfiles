@@ -10,10 +10,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test
-        run: echo success
+      - name: Install dependencies
+        run: |
+          sudo apt install pipenv
+          pipenv install --dev
+          pipenv shell
+          ansible --version
       # - name: Setup NodeJs
       #   uses: actions/setup-node@v1
       #   with:
