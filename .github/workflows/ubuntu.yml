@@ -10,12 +10,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - uses: dschep/install-pipenv-action@v1
       - name: Install dependencies
         run: |
-          sudo apt install pipenv
           pipenv install --dev
           pipenv shell
           ansible --version
