@@ -51,9 +51,9 @@ PURE_PROMPT_SYMBOL='$'
 
 
 # zsh-users/zsh-history-substring-search
-bindkey '\eOA' history-substring-search-up
+bindkey '^[[A' history-substring-search-up
 bindkey '^P' history-substring-search-up
-bindkey '\eOB' history-substring-search-down
+bindkey '^[[B' history-substring-search-down
 bindkey '^N' history-substring-search-down
 
 
@@ -72,6 +72,23 @@ function select-history() {
 }
 zle -N select-history
 bindkey '^r' select-history
+
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+
+# rbenv
+export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(rbenv init -)"
+fi
 
 
 # awscli
@@ -93,8 +110,8 @@ export PATH=$PATH$(find $HOME/mycmd -type d | xargs -I % echo -n :%)
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
-alias ls='ls -h --color=always'
-#alias grep='grep --color=always'
+# alias ls='ls -h --color=always'
+# alias grep='grep --color=always'
 alias diff='diff -u --color'
 alias less='less -R'
 
@@ -104,3 +121,7 @@ alias vimdiff='nvim -d'
 
 alias apb='ansible-playbook'
 
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
