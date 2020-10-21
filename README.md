@@ -1,7 +1,17 @@
 # dotfiles
 My dotfiles.
 
+
 ## Prerequisites
 
-- [act](https://github.com/nektos/act)
+- Python 3.8
 - [pipenv](https://github.com/pypa/pipenv)
+
+
+## Setup
+
+- Install dependencies.
+  ```sh
+  $ pipenv install --dev
+  ```
+

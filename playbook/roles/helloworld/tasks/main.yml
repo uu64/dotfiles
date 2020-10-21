@@ -1,0 +1,2 @@
+- name: Hello, World!
+  command: echo Hello, World!
