@@ -14,10 +14,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.7
           architecture: x64
-      - name: Install pipenv and dependencies
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pipenv --upgrade-strategy=only-if-needed
-          pipenv install --dev
+          pip install -r requirements.txt
+          ansible --version
