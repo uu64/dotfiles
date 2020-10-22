@@ -1,2 +1,4 @@
-- name: zsh
-  command: echo zsh
+- name: Install zsh
+  apt:
+    name: zsh
+    state: present

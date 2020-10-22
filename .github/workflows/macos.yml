@@ -10,7 +10,6 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-      - run: |
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
@@ -20,3 +19,6 @@ jobs:
         run: |
           pip install -r requirements.txt
           ansible --version
+      - name: Execute "make install"
+        run: |
+          make install

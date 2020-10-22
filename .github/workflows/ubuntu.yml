@@ -22,5 +22,8 @@ jobs:
           architecture: x64
       - name: Install dependencies
         run: |
+          apt update && apt install aptitude python3-apt make
           pip install -r requirements.txt
-          ansible --version
+      - name: Execute "make install"
+        run: |
+          make install
