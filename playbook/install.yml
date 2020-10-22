@@ -1,4 +1,6 @@
 ---
 - hosts: localhost
   roles:
-    - role: roles/helloworld
+    # The default shell on macOS is zsh
+    - role: roles/zsh
+      when: ansible_os_family != 'Darwin'
