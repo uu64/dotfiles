@@ -22,7 +22,7 @@ jobs:
           architecture: x64
       - name: Install dependencies
         run: |
-          apt update && apt install aptitude python3-apt make
+          apt -y update && apt -y install aptitude python3-apt make
           pip install -r requirements.txt
       - name: Execute "make install"
         run: |
