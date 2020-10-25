@@ -3,3 +3,7 @@
   apt:
     name: zsh
     state: present
+
+- name: Change login shell
+  command:
+    argv: chsh -s "$(which zsh)"
