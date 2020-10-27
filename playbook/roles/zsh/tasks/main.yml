@@ -9,10 +9,11 @@
   shell: grep $(whoami) /etc/passwd | cut -d ":" -f 7
   register: login_shell
 
-- name: Print login shell
-  debug:
-    msg: "{{ login_shell.stdout }}"
-
-- name: Change login shell to zsh
-  shell: chsh -s $(which zsh)
+- block:
+    - name: Get current user
+      shell: whoami
+      register: whoami
+    - name: Change login shell to zsh
+      become: yes
+      shell: chsh {{ whoami.stdout }} -s $(which zsh)
   when: login_shell.stdout.find("zsh") == -1
