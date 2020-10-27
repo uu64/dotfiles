@@ -3,7 +3,16 @@
   apt:
     name: zsh
     state: present
+    update_cache: yes
 
-- name: Change login shell
-  command:
-    argv: chsh -s "$(which zsh)"
+- name: Check login shell
+  shell: grep $(whoami) /etc/passwd | cut -d ":" -f 7
+  register: login_shell
+
+- name: Print login shell
+  debug:
+    msg: "{{ login_shell.stdout }}"
+
+- name: Change login shell to zsh
+  shell: chsh -s $(which zsh)
+  when: login_shell.stdout.find("zsh") == -1
