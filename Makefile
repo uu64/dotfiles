@@ -6,10 +6,15 @@ install:
 deploy:
 	ansible-playbook -i localhost.yml playbook/deploy.yml
 
+.PHONY: test
+test:
+	bats test/
+
 .PHONY: docker-build
 docker-build:
 	docker build -t dotfiles .
 
 .PHONY: docker-test
 docker-test:
-	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest make install
+	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest \
+	make install && make test

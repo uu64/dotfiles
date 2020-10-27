@@ -6,7 +6,7 @@
     update_cache: yes
 
 - name: Check login shell
-  shell: grep $(whoami) /etc/passwd | cut -d ":" -f 7
+  shell: grep "$(whoami)" /etc/passwd | cut -d ":" -f 7
   register: login_shell
 
 - block:

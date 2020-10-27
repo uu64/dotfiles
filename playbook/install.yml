@@ -3,4 +3,4 @@
   roles:
     # The default shell on macOS is zsh
     - role: roles/zsh
-      when: ansible_os_family != 'Darwin'
+      when: ansible_os_family == 'Debian'
