@@ -30,5 +30,4 @@ jobs:
           make install
       - name: Test
         run: |
-          grep -E "^$(whoami):" /etc/passwd | cut -d ":" -f 7 | xargs basename
           make test
