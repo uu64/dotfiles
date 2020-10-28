@@ -1,19 +1,24 @@
-- name: Install zsh
-  become: yes
-  apt:
-    name: zsh
-    state: present
-    update_cache: yes
-
-- name: Check login shell
-  shell: grep "$(whoami)" /etc/passwd | cut -d ":" -f 7
-  register: login_shell
-
-- block:
-    - name: Get current user
-      shell: whoami
-      register: whoami
-    - name: Change login shell to zsh
+- name: Install zsh on Ubuntu
+  when: ansible_os_family == 'Debian'
+  block:
+    - name: Install zsh
       become: yes
-      shell: chsh {{ whoami.stdout }} -s $(which zsh)
-  when: login_shell.stdout.find("zsh") == -1
+      apt:
+        name: zsh
+        state: present
+        update_cache: yes
+
+    - name: Check login shell
+      shell: grep "$(whoami)" /etc/passwd | cut -d ":" -f 7
+      register: login_shell
+
+    - block:
+        - name: Get current user
+          shell: whoami
+          register: whoami
+        - name: Change login shell to zsh
+          become: yes
+          shell: chsh {{ whoami.stdout }} -s $(which zsh)
+      when: login_shell.stdout.find("zsh") == -1
+
+# The default shell on macOS is zsh
