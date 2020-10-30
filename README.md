@@ -11,8 +11,9 @@ This repository runs on macOS or ubuntu and depends on the following.
 
 - make
 - Python 3.x
-- python3-apt (Linux)
-- aptitude (Linux)
+- aptitude (Ubuntu)
+- python3-apt (Ubuntu)
+- brew (MacOS)
 
 ## Setup
 

@@ -1,10 +1,11 @@
-- name: Install zsh on Ubuntu
-  when: ansible_os_family == 'Debian'
-  block:
-    - name: Install zsh
+- block:
+    - name: Install apt packages
       become: yes
       apt:
-        name: zsh
+        pkg:
+          - curl
+          - gawk
+          - zsh
         state: present
         update_cache: yes
 
@@ -21,4 +22,31 @@
           shell: chsh {{ whoami.stdout }} -s $(which zsh)
       when: login_shell.stdout.find("zsh") == -1
 
-# The default shell on macOS is zsh
+  when: ansible_os_family == 'Debian'
+
+- name: Install brew packages
+  homebrew:
+    name:
+      # The default shell on macOS is zsh
+      - curl
+      - gawk
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family == 'Darwin'
+
+
+- name: Check zplug existence
+  stat:
+    path: ~/.zplug
+  register: zplug
+
+- block:
+    - name: Download zplug installer
+      get_url:
+        url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+        dest: /tmp/installer.zsh
+
+    - name: Install zplug
+      command: zsh /tmp/installer.zsh
+
+  when: not zplug.stat.exists
