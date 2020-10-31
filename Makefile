@@ -1,14 +1,19 @@
+.PHONY: all
+all:
+	make install
+	make deploy
+
 .PHONY: install
 install:
-	ansible-playbook -i localhost.yml playbook/install.yml
+	ansible-playbook -i inventories/localhost.yml install.yml
 
 .PHONY: deploy
 deploy:
-	ansible-playbook -i localhost.yml playbook/deploy.yml
+	ansible-playbook -i inventories/localhost.yml deploy.yml
 
 .PHONY: test
 test:
-	bats test/
+	bats tests/
 
 .PHONY: docker-build
 docker-build:
@@ -17,4 +22,4 @@ docker-build:
 .PHONY: docker-test
 docker-test:
 	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest \
-	make install && make test
+	make all && make test

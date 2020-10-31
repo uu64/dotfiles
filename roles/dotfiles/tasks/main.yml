@@ -1,0 +1,10 @@
+- name: Create dotfiles symbolic links
+  file:
+    src: "{{ playbook_dir }}/{{ item }}"
+    dest: "~/{{ item }}"
+    state: link
+  loop:
+    - .tmux.conf
+    - .vimrc
+    - .zshenv
+    - .zshrc

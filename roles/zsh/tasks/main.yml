@@ -34,7 +34,6 @@
     update_homebrew: yes
   when: ansible_os_family == 'Darwin'
 
-
 - name: Check zplug existence
   stat:
     path: ~/.zplug
