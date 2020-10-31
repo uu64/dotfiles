@@ -2,6 +2,7 @@
 all:
 	make install
 	make deploy
+	make test
 
 .PHONY: install
 install:
@@ -21,5 +22,4 @@ docker-build:
 
 .PHONY: docker-test
 docker-test:
-	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest \
-	make all && make test
+	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest make all

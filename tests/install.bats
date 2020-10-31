@@ -8,5 +8,6 @@
 
 @test "zplug is installed" {
   run zsh -c "source ~/.zplug/init.zsh && zplug --version"
-  [ "${status}" -eq 0 ]
+  echo ${output}
+  [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
