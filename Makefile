@@ -12,6 +12,12 @@ install:
 deploy:
 	ansible-playbook -i inventories/localhost.yml deploy.yml
 
+.PHONY: lint
+lint:
+	ansible-lint install.yml
+	ansible-lint deploy.yml
+	ansible-lint roles/*
+
 .PHONY: test
 test:
 	bats tests/
