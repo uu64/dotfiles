@@ -14,9 +14,9 @@ deploy:
 
 .PHONY: lint
 lint:
-	ansible-lint install.yml
-	ansible-lint deploy.yml
-	ansible-lint roles/*
+	ansible-lint install.yml -x 401
+	ansible-lint deploy.yml -x 401
+	ansible-lint roles/* -x 401
 
 .PHONY: test
 test:

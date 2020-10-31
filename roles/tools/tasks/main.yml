@@ -1,0 +1,13 @@
+- name: Install pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: ~/.pyenv
+    update: no
+
+- name: Install rbenv
+  debug:
+    msg: Install rbenv
+
+- name: Install nvm
+  debug:
+    msg: Install nvm
