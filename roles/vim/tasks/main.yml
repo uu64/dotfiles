@@ -1,0 +1,32 @@
+- name: Install neovim using apt
+  become: yes
+  apt:
+    pkg:
+      - neovim
+    state: present
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install neovim using brew
+  homebrew:
+    name:
+      - neovim
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family == 'Darwin'
+
+- name: Check dein existence
+  stat:
+    path: ~/.cache/dein
+  register: dein
+
+- block:
+    - name: Download dein installer
+      get_url:
+        url: https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
+        dest: /tmp/dein_installer.sh
+
+    - name: Install dein
+      command: sh /tmp/dein_installer.sh ~/.cache/dein
+
+  when: not dein.stat.exists

@@ -19,9 +19,11 @@
     - name: Download nvm installer
       get_url:
         url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh
-        dest: /tmp/install.sh
+        dest: /tmp/nvm_installer.sh
 
     - name: Install nvm
-      command: bash /tmp/install.sh
+      command: bash /tmp/nvm_installer.sh
 
   when: not nvm.stat.exists
+
+# TODO: tmux

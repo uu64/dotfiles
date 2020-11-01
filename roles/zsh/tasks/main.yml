@@ -38,9 +38,9 @@
     - name: Download zplug installer
       get_url:
         url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
-        dest: /tmp/installer.zsh
+        dest: /tmp/zplug_installer.zsh
 
     - name: Install zplug
-      command: zsh /tmp/installer.zsh
+      command: zsh /tmp/zplug_installer.zsh
 
   when: not zplug.stat.exists

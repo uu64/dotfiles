@@ -12,22 +12,31 @@
   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
 
+# roles/vim
+@test "neovim is installed" {
+  run nvim --version
+  [ "${status}" -eq 0 ]
+}
+
 # roles/tools
 @test "pyenv is installed" {
   export PYENV_ROOT="$HOME/.pyenv"
+  # shellcheck disable=SC2030
   export PATH="$PYENV_ROOT/bin:$PATH"
   run bash -c "eval $(pyenv init -) && pyenv --version"
   [[ "${output}" =~ pyenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
 
 @test "rbenv is installed" {
+  # shellcheck disable=SC2031
   export PATH="$HOME/.rbenv/bin:$PATH"
   run bash -c "eval $(rbenv init -) && rbenv --version"
   [[ "${output}" =~ rbenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
 
 @test "nvm is installed" {
-  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  export NVM_DIR
   run bash -c "source $NVM_DIR/nvm.sh && nvm --version"
   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
