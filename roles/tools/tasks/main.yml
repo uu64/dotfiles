@@ -10,6 +10,18 @@
     dest: ~/.rbenv
     update: no
 
-- name: Install nvm
-  debug:
-    msg: Install nvm
+- name: Check nvm existence
+  stat:
+    path: ~/.nvm
+  register: nvm
+
+- block:
+    - name: Download nvm installer
+      get_url:
+        url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh
+        dest: /tmp/install.sh
+
+    - name: Install nvm
+      command: bash /tmp/install.sh
+
+  when: not nvm.stat.exists

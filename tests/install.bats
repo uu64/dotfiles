@@ -23,6 +23,11 @@
 @test "rbenv is installed" {
   export PATH="$HOME/.rbenv/bin:$PATH"
   run bash -c "eval $(rbenv init -) && rbenv --version"
-  echo ${output}
   [[ "${output}" =~ rbenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
+}
+
+@test "nvm is installed" {
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  run bash -c "source $NVM_DIR/nvm.sh && nvm --version"
+  [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
