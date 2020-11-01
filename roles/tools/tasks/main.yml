@@ -5,8 +5,10 @@
     update: no
 
 - name: Install rbenv
-  debug:
-    msg: Install rbenv
+  git:
+    repo: https://github.com/rbenv/rbenv.git
+    dest: ~/.rbenv
+    update: no
 
 - name: Install nvm
   debug:

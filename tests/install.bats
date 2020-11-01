@@ -19,3 +19,10 @@
   run bash -c "eval $(pyenv init -) && pyenv --version"
   [[ "${output}" =~ pyenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
+
+@test "rbenv is installed" {
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  run bash -c "eval $(rbenv init -) && rbenv --version"
+  echo ${output}
+  [[ "${output}" =~ rbenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
+}
