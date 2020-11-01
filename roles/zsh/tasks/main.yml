@@ -1,38 +1,33 @@
-- block:
-    - name: Install apt packages
-      become: yes
-      apt:
-        pkg:
-          - curl
-          - gawk
-          - zsh
-        state: present
-        update_cache: yes
-
-    - name: Check login shell
-      shell: grep -E "^$(whoami):" /etc/passwd | cut -d ":" -f 7
-      register: login_shell
-
-    - block:
-        - name: Get current user
-          shell: whoami
-          register: whoami
-        - name: Change login shell to zsh
-          become: yes
-          shell: chsh {{ whoami.stdout }} -s $(which zsh)
-      when: login_shell.stdout.find("zsh") == -1
-
+- name: Install zsh and zplug dependencies using apt
+  become: yes
+  apt:
+    pkg:
+      - gawk
+      - zsh
+    state: present
+    update_cache: yes
   when: ansible_os_family == 'Debian'
 
-- name: Install brew packages
+- name: Install zplug dependencies using brew
   homebrew:
     name:
       # The default shell on macOS is zsh
-      - curl
       - gawk
     state: present
     update_homebrew: yes
   when: ansible_os_family == 'Darwin'
+
+- block:
+    - name: Check login shell
+      shell: grep -E "^$(whoami):" /etc/passwd | cut -d ":" -f 7
+      register: login_shell
+
+    - name: Change login shell to zsh
+      become: yes
+      shell: chsh {{ ansible_user }} -s $(which zsh)
+      when: login_shell.stdout.find("zsh") == -1
+
+  when: ansible_os_family == 'Debian'
 
 - name: Check zplug existence
   stat:
