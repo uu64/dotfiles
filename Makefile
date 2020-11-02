@@ -10,7 +10,7 @@ install:
 
 .PHONY: deploy
 deploy:
-	ansible-playbook -K -i inventories/localhost.yml deploy.yml
+	ansible-playbook -i inventories/localhost.yml deploy.yml
 
 .PHONY: lint
 lint:
