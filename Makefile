@@ -6,11 +6,11 @@ all:
 
 .PHONY: install
 install:
-	ansible-playbook -i inventories/localhost.yml install.yml
+	ansible-playbook -K -i inventories/localhost.yml install.yml
 
 .PHONY: deploy
 deploy:
-	ansible-playbook -i inventories/localhost.yml deploy.yml
+	ansible-playbook -K -i inventories/localhost.yml deploy.yml
 
 .PHONY: lint
 lint:
