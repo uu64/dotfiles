@@ -5,6 +5,7 @@
     state: link
   loop:
     - .tmux.conf
+    # TODO: neovim config file location
     - .vimrc
     - .zshenv
     - .zshrc

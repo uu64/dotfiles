@@ -9,6 +9,7 @@ uu64's dotfiles.
 
 This repository runs on macOS or ubuntu and depends on the following.
 
+- git
 - make
 - Python 3.x
 - aptitude (Ubuntu)

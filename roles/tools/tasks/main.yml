@@ -1,3 +1,36 @@
+- name: Install pyenv dependencies using apt
+  become: yes
+  apt:
+    pkg:
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libffi-dev
+      - liblzma-dev
+      - python-openssl
+    state: present
+    update_cache: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install pyenv dependencies using brew
+  homebrew:
+    name:
+      - readline
+      - xz
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family == 'Darwin'
+
 - name: Install pyenv
   git:
     repo: https://github.com/pyenv/pyenv.git
