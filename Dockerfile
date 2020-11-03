@@ -7,6 +7,7 @@ RUN apt update && apt install -y \
   python3.8 \
   python3-apt \
   python3-pip \
+  sudo \
 && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/sstephenson/bats.git \

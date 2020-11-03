@@ -1,22 +1,20 @@
-.PHONY: all
-all:
-	make install
-	make deploy
-	make test
+ANSIBLE_INVENTORIES = inventories/localhost.yml
+ANSIBLE_SUDO_OPTION = $(shell sudo -n true 2>/dev/null || echo "-K")
+
+# 401: Git checkouts must contain explicit version
+ANSIBLE_LINT_SKIP_RULES = 401
+
+IMAGE_NAME = dotfiles
+IMAGE_TAG = latest
+DOCKER_WORK_DIR = /usr/src/
 
 .PHONY: install
-install:
-	ansible-playbook -K -i inventories/localhost.yml install.yml
+install: install.yml
+	ansible-playbook $(ANSIBLE_SUDO_OPTION) -i $(ANSIBLE_INVENTORIES) $^
 
 .PHONY: deploy
-deploy:
-	ansible-playbook -i inventories/localhost.yml deploy.yml
-
-.PHONY: lint
-lint:
-	ansible-lint install.yml -x 401
-	ansible-lint deploy.yml -x 401
-	ansible-lint roles/* -x 401
+deploy: deploy.yml
+	ansible-playbook -i $(ANSIBLE_INVENTORIES) $^
 
 .PHONY: test
 test:
@@ -24,8 +22,26 @@ test:
 
 .PHONY: docker-build
 docker-build:
-	docker build -t dotfiles .
+	docker build -t $(IMAGE_NAME) .
 
 .PHONY: docker-test
 docker-test:
-	docker run --rm -v $(PWD):/usr/src/ -w /usr/src -it dotfiles:latest make all
+	docker run --rm \
+		-v $(CURDIR):$(DOCKER_WORK_DIR) \
+		-w $(DOCKER_WORK_DIR) \
+		-it $(IMAGE_NAME):$(IMAGE_TAG) make all
+
+.PHONY: lint-playbook
+lint-playbook: install.yml deploy.yml roles/*
+	ansible-lint -x $(ANSIBLE_LINT_SKIP_RULES) $^
+
+.PHONY: lint
+lint:
+	make lint-playbook
+
+.PHONY: all
+all:
+	make lint
+	make install
+	make deploy
+	make test
