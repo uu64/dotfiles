@@ -1,4 +1,67 @@
 - block:
+    - name: Check HackGen existence
+      stat:
+        path: ~/.fonts/HackGen
+      register: hackgen
+
+    - block:
+        - name: create ~/.fonts/HackGen
+          file:
+            path: ~/.fonts/HackGen
+            state: directory
+            recurse: yes
+
+        - name: Create temporary directory
+          tempfile:
+            state: directory
+            suffix: fonts
+          register: tmpdir
+
+        - name: Install unzip and zipinfo using apt
+          become: yes
+          apt:
+            pkg:
+              - fontconfig
+              - unzip
+            state: present
+            update_cache: yes
+
+        - name: Get download url for ubuntu
+          uri:
+            url: https://api.github.com/repos/yuru7/HackGen/releases/latest
+            return_content: yes
+          register: json_response
+
+        - name: Download HackGen latest release zipball
+          get_url:
+            url: "{{ json_response.json.zipball_url }}"
+            dest: "{{ tmpdir.path }}/hackgen_latest.zip"
+
+        - name: Extract zipball
+          unarchive:
+            src: "{{ tmpdir.path }}/hackgen_latest.zip"
+            dest: "{{ tmpdir.path }}"
+
+        - name: Get font files
+          find:
+            paths: "{{ tmpdir.path }}"
+            file_type: file
+            use_regex: yes
+            recurse: yes
+            patterns:
+              - "^HackGen[a-zA-Z0-9]*\\-(Regular|Bold)\\.ttf$"
+          register: font_files
+
+        - copy:
+            src: "{{ item.path }}"
+            dest: "~/.fonts/HackGen"
+          loop: "{{ font_files.files }}"
+
+      when: not hackgen.stat.exists
+
+  when: ansible_os_family == "Debian"
+
+- block:
     - name: Tap a homebrew/cask-fonts
       community.general.homebrew_tap:
         name: homebrew/cask-fonts

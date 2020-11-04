@@ -4,3 +4,4 @@
     - role: roles/zsh
     - role: roles/vim
     - role: roles/tools
+    - role: roles/fonts

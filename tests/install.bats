@@ -40,3 +40,19 @@
   run bash -c "source $NVM_DIR/nvm.sh && nvm --version"
   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
+
+# roles/fonts
+@test "HackGen is installed" {
+  if [ "$(uname)" = "Linux" ]
+  then
+    run bash -c "fc-list | grep HackGen -c"
+    # 16 fonts are istalled
+    [ "${output}" = "16" ]
+  elif [ "$(uname)" = "Darwin" ]
+  then
+    run bash -c "brew list --cask | grep font-hackgen-nerd -c"
+    [ "${output}" = "1" ]
+  else
+    return 1
+  fi
+}
