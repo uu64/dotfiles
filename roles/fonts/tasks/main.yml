@@ -1,0 +1,13 @@
+- block:
+    - name: Tap a homebrew/cask-fonts
+      community.general.homebrew_tap:
+        name: homebrew/cask-fonts
+        state: present
+      when: ansible_os_family == "Darwin"
+
+    - name: Install font-hackgen-nerd using brew
+      community.general.homebrew_cask:
+        name: font-hackgen-nerd
+        state: present
+
+  when: ansible_os_family == "Darwin"
