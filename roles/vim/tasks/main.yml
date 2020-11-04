@@ -5,15 +5,15 @@
       - neovim
     state: present
     update_cache: yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == "Debian"
 
 - name: Install neovim using brew
-  homebrew:
+  community.general.homebrew:
     name:
       - neovim
     state: present
     update_homebrew: yes
-  when: ansible_os_family == 'Darwin'
+  when: ansible_os_family == "Darwin"
 
 - name: Check dein existence
   stat:

@@ -6,16 +6,16 @@
       - zsh
     state: present
     update_cache: yes
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == "Debian"
 
 - name: Install zplug dependencies using brew
-  homebrew:
+  community.general.homebrew:
     name:
       # The default shell on macOS is zsh
       - gawk
     state: present
     update_homebrew: yes
-  when: ansible_os_family == 'Darwin'
+  when: ansible_os_family == "Darwin"
 
 - block:
     - name: Check login shell
@@ -27,7 +27,7 @@
       shell: chsh {{ ansible_user }} -s $(which zsh)
       when: login_shell.stdout.find("zsh") == -1
 
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == "Debian"
 
 - name: Check zplug existence
   stat:
