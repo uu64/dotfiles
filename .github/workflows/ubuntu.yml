@@ -23,7 +23,7 @@ jobs:
           architecture: x64
       - name: Prerequisites
         run: |
-          apt -y update && apt -y install aptitude make python3-apt
+          apt -y update && apt -y install aptitude make python3-apt shellcheck
           pip install -r requirements.txt
           git clone https://github.com/sstephenson/bats.git && sudo bats/install.sh /usr/local
       - name: Install
@@ -37,4 +37,4 @@ jobs:
           make test
       - name: Lint
         run: |
-          make lint-playbook
+          make lint
