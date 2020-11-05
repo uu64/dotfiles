@@ -31,4 +31,4 @@ jobs:
           make test
       - name: Lint
         run: |
-          make lint
+          make lint-playbook
