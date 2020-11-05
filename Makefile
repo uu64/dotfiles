@@ -31,17 +31,22 @@ docker-test:
 		-w $(DOCKER_WORK_DIR) \
 		-it $(IMAGE_NAME):$(IMAGE_TAG) make all
 
+.PHONY: lint-bats
+lint-bats: tests/*
+	shellcheck $^
+
 .PHONY: lint-playbook
 lint-playbook: install.yml deploy.yml roles/*
 	ansible-lint -x $(ANSIBLE_LINT_SKIP_RULES) $^
 
 .PHONY: lint
 lint:
+	make lint-bats
 	make lint-playbook
 
 .PHONY: all
 all:
-	make lint
 	make install
 	make deploy
 	make test
+	make lint

@@ -120,8 +120,3 @@ alias nvi='nvim'
 alias vimdiff='nvim -d'
 
 alias apb='ansible-playbook'
-
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true

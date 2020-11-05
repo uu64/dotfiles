@@ -41,6 +41,16 @@
   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
 
+@test "shellcheck is installed" {
+  run which shellcheck
+  [[ "${status}" -eq 0 ]]
+}
+
+@test "tmux is installed" {
+  run which tmux
+  [[ "${status}" -eq 0 ]]
+}
+
 # roles/fonts
 @test "HackGen is installed" {
   if [ "$(uname)" = "Linux" ]
