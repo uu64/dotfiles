@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - run: |
           # Hack to get setup-python to work on act
@@ -37,4 +37,4 @@ jobs:
           make test
       - name: Lint
         run: |
-          shellcheck --version
+          make lint
