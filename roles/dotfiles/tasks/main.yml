@@ -1,11 +1,11 @@
 - name: Create dotfiles symbolic links
   file:
-    src: "{{ playbook_dir }}/{{ item }}"
-    dest: "~/{{ item }}"
+    src: "{{ playbook_dir }}/{{ item.name }}"
+    dest: "{{ item.dest }}"
     state: link
   loop:
-    - .tmux.conf
-    # TODO: neovim config file location
-    - .vimrc
-    - .zshenv
-    - .zshrc
+    - { name: .zshrc, dest: ~/.zshrc }
+    - { name: .zshenv, dest: ~/.zshenv }
+    - { name: .vimrc, dest: ~/.vimrc }
+    - { name: .vimrc, dest: ~/.config/nvim/init.vim }
+    - { name: .tmux.conf, dest: ~/.tmux.conf }
