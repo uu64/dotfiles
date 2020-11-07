@@ -15,6 +15,11 @@
   [ "${status}" -eq 0 ]
 }
 
+@test ".init.vim is present" {
+  run ls ~/.config/nvim/init.vim
+  [ "${status}" -eq 0 ]
+}
+
 @test ".tmux.conf is present" {
   run ls ~/.tmux.conf
   [ "${status}" -eq 0 ]
