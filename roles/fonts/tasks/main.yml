@@ -66,11 +66,14 @@
       community.general.homebrew_tap:
         name: homebrew/cask-fonts
         state: present
-      when: ansible_os_family == "Darwin"
 
-    - name: Install font-hackgen-nerd using brew
-      community.general.homebrew_cask:
-        name: font-hackgen-nerd
-        state: present
+    # NOTE: The following code does not work because of a bug
+    # Reference: https://github.com/ansible-collections/community.general/pull/1038
+    # - name: Install font-hackgen-nerd using brew
+    #   community.general.homebrew_cask:
+    #     name: font-hackgen-nerd
+    #     path: ~/Library/Fonts/
+    #     state: present
+    #     update_homebrew: yes
 
   when: ansible_os_family == "Darwin"
