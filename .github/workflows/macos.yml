@@ -19,7 +19,7 @@ jobs:
       - name: Prerequisites
         run: |
           pip install -r requirements.txt
-          git clone https://github.com/sstephenson/bats.git && bats/install.sh /usr/local
+          git clone https://github.com/sstephenson/bats.git && sudo bats/install.sh /usr/local
       - name: Install
         run: |
           make install
