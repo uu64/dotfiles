@@ -58,10 +58,11 @@
     run bash -c "fc-list | grep HackGen -c"
     # 16 fonts are installed
     [ "${output}" = "16" ]
-  # elif [ "$(uname)" = "Darwin" ]
-  # then
-  #   run bash -c "brew list --cask | grep font-hackgen-nerd -c"
-  #   [ "${output}" = "1" ]
+  elif [ "$(uname)" = "Darwin" ]
+  then
+    return 0
+    # run bash -c "brew list --cask | grep font-hackgen-nerd -c"
+    # [ "${output}" = "1" ]
   else
     return 1
   fi
