@@ -16,10 +16,38 @@ This repository runs on macOS or ubuntu and depends on the following.
 - python3-apt (Ubuntu)
 - brew (MacOS)
 
-## Setup
+## How to use
 
-- Install dependencies.
+1. Install this repo's dependencies.
   ```sh
   $ pip install -r requirements.txt
   ```
 
+2. Install zsh, dev tools and fonts. (Includes running `chsh`)
+  ```
+  $ make install
+  ```
+
+3. Create dotfiles symbolic links to your home directory.
+  ```
+  $ make deploy
+  ```
+
+## Local development
+
+Run tests with [bats](https://github.com/sstephenson/bats).
+```
+$ make test
+```
+
+Run lint with ansible-lint and shellcheck.
+```
+$ make lint
+```
+
+Run all commands (`make install`, `make deploy`, `make test`, `make lint`) locally in Docker.
+(like github actions)
+```
+$ make docker-build
+$ make docker-test
+```
