@@ -78,11 +78,6 @@ bindkey '^r' select-history
 complete -C "$(which aws_completer)" aws
 
 
-# my command
-# export PATH=$PATH:$HOME/mycmd
-export PATH=$PATH$(find $HOME/mycmd -type d | xargs -I % echo -n :%)
-
-
 # alias
 alias l='ls -CF'
 alias la='ls -A'
