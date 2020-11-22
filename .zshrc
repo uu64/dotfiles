@@ -79,16 +79,24 @@ complete -C "$(which aws_completer)" aws
 
 
 # alias
-alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -l'
-# alias ls='ls -h --color=always'
-# alias grep='grep --color=always'
-alias diff='diff -u --color'
-alias less='less -R'
+
+alias cgrep='grep --color=always'
 
 alias vi='nvim'
 alias nvi='nvim'
 alias vimdiff='nvim -d'
 
 alias apb='ansible-playbook'
+
+case "${OSTYPE}" in
+  darwin*)
+    alias ls='ls -hF -G'
+    alias cdiff='colordiff -u'
+  ;;
+  linux*)
+    alias ls='ls -hF --color=always'
+    alias cdiff='diff -u --color'
+  ;;
+esac
