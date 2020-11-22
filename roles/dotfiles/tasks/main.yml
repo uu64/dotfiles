@@ -6,6 +6,20 @@
   loop:
     - { name: .zshrc, dest: ~/.zshrc }
     - { name: .zshenv, dest: ~/.zshenv }
-    - { name: .vimrc, dest: ~/.vimrc }
+    # - { name: .vimrc, dest: ~/.vimrc }
     - { name: .vimrc, dest: ~/.config/nvim/init.vim }
     - { name: .tmux.conf, dest: ~/.tmux.conf }
+
+- name: Create ~/.config/dotfiles
+  file:
+    path: ~/.config/dotfiles
+    state: directory
+    recurse: yes
+    mode: 0755
+
+- name: Create zsh custom configuration file
+  copy:
+    content: ""
+    dest: ~/.config/dotfiles/zsh-custom-conf.zsh
+    force: no
+    mode: 0755

@@ -4,8 +4,9 @@
 #  _ / /\__ \ | | |  __/ | | \ V /
 # (_)___|___/_| |_|\___|_| |_|\_/
 
-# neovim
+# dotfiles home directory
 export XDG_CONFIG_HOME=~/.config
+export DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
 
 
 # pyenv

@@ -15,7 +15,7 @@
     update_homebrew: yes
   when: ansible_os_family == "Darwin"
 
-- name: create ~/.config/nvim
+- name: Create ~/.config/nvim
   file:
     path: ~/.config/nvim
     state: directory
