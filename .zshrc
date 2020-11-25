@@ -42,8 +42,13 @@ setopt nonomatch
 # complement
 autoload -U compinit && compinit
 autoload bashcompinit && bashcompinit
+zmodload zsh/complist
 zstyle ':completion:*:default' menu select=2
 bindkey "^[[Z" reverse-menu-complete
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
 
 
 # sindresorhus/pure
