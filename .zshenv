@@ -4,6 +4,11 @@
 #  _ / /\__ \ | | |  __/ | | \ V /
 # (_)___|___/_| |_|\___|_| |_|\_/
 
+
+# prevent duplicate values in PATH
+typeset -U PATH path
+
+
 # dotfiles home directory
 export XDG_CONFIG_HOME=~/.config
 export DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
