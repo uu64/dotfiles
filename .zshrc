@@ -105,6 +105,3 @@ case "${OSTYPE}" in
     alias cdiff='diff -u --color'
   ;;
 esac
-
-# custom configuration
-source "${DOTFILES_HOME}/zsh-custom-conf.zsh"
