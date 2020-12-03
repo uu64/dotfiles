@@ -91,6 +91,7 @@ alias cgrep='grep --color=always'
 
 alias vi='nvim'
 alias nvi='nvim'
+alias fvi='vi $(find * -type f | fzf)'
 alias vimdiff='nvim -d'
 
 alias apb='ansible-playbook'
