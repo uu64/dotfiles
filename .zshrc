@@ -77,16 +77,20 @@ function fzf_history() {
   CURSOR=$#BUFFER
 }
 
-function fzf_find() {
+function fzf_open() {
   BUFFER="$(ag -g "" | fzf)"
-  CURSOR=$#BUFFER
+  if [ -n "$BUFFER" ];
+  then
+    BUFFER="less $BUFFER"
+    zle accept-line
+  fi
 }
 
 zle -N fzf_history
 bindkey '^r' fzf_history
 
-zle -N fzf_find
-bindkey '^f' fzf_find
+zle -N fzf_open
+bindkey '^o' fzf_open
 
 
 # awscli
