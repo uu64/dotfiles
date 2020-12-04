@@ -59,19 +59,21 @@
 
   when: not nvm.stat.exists
 
-- name: Install shellcheck and tmux using apt
+- name: Install ag, shellcheck and tmux using apt
   become: yes
   apt:
     pkg:
+      - silversearcher-ag
       - shellcheck
       - tmux
     state: present
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: Install shellcheck tmux using brew
+- name: Install ag, shellcheck tmux using brew
   community.general.homebrew:
     name:
+      - the_silver_searcher
       - shellcheck
       - tmux
     state: present

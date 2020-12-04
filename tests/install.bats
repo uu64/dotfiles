@@ -41,6 +41,11 @@
   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 }
 
+@test "ag is installed" {
+  run which ag
+  [[ "${status}" -eq 0 ]]
+}
+
 @test "shellcheck is installed" {
   run which shellcheck
   [[ "${status}" -eq 0 ]]

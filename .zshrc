@@ -71,12 +71,22 @@ export ENHANCD_HYPHEN_NUM=100
 
 # junegunn/fzf-bin
 export FZF_DEFAULT_OPTS="--exact --layout reverse --no-sort"
-function select-history() {
+
+function fzf_history() {
   BUFFER=$(history -n -r 1 | fzf)
   CURSOR=$#BUFFER
 }
-zle -N select-history
-bindkey '^r' select-history
+
+function fzf_find() {
+  BUFFER="$(ag -g "" | fzf)"
+  CURSOR=$#BUFFER
+}
+
+zle -N fzf_history
+bindkey '^r' fzf_history
+
+zle -N fzf_find
+bindkey '^f' fzf_find
 
 
 # awscli
@@ -90,8 +100,6 @@ alias ll='ls -l'
 alias cgrep='grep --color=always'
 
 alias vi='nvim'
-alias nvi='nvim'
-alias fvi='vi $(find * -type f | fzf)'
 alias vimdiff='nvim -d'
 
 alias apb='ansible-playbook'
