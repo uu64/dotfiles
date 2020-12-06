@@ -81,7 +81,7 @@ function fzf_open() {
   BUFFER="$(ag -g "" | fzf)"
   if [ -n "$BUFFER" ];
   then
-    BUFFER="less $BUFFER"
+    BUFFER="bat $BUFFER"
     zle accept-line
   fi
 }
@@ -110,6 +110,7 @@ alias apb='ansible-playbook'
 
 case "${OSTYPE}" in
   darwin*)
+    alias bat="batcat"
     alias ls='ls -hF -G'
     alias cdiff='colordiff -u'
   ;;

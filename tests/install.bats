@@ -46,6 +46,19 @@
   [[ "${status}" -eq 0 ]]
 }
 
+@test "bat is installed" {
+  if [ "$(uname)" = "Linux" ]
+  then
+    run which batcat
+  elif [ "$(uname)" = "Darwin" ]
+  then
+    run which bat
+  else
+    return 1
+  fi
+  [[ "${status}" -eq 0 ]]
+}
+
 @test "shellcheck is installed" {
   run which shellcheck
   [[ "${status}" -eq 0 ]]
