@@ -110,11 +110,11 @@ alias apb='ansible-playbook'
 
 case "${OSTYPE}" in
   darwin*)
-    alias bat="batcat"
     alias ls='ls -hF -G'
     alias cdiff='colordiff -u'
   ;;
   linux*)
+    alias bat="batcat"
     alias ls='ls -hF --color=always'
     alias cdiff='diff -u --color'
   ;;
