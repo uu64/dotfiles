@@ -8,7 +8,6 @@
 if &compatible
   set nocompatible
 endif
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Appearance
 set cursorline
@@ -16,7 +15,7 @@ set title
 set number
 set numberwidth=5
 set list
-set listchars=eol:¬,tab:▸\ ,space:.
+set listchars=eol:¬,tab:▸\ ,trail:.
 " set noshowmode
 
 " Indent
@@ -67,24 +66,35 @@ nnoremap sl <C-w>l
 nnoremap st <C-w>t
 nnoremap sb <C-w>b
 
+" Move tabs
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+
 " Plugins
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-call dein#begin('~/.vim/dein')
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-call dein#add('cocopon/iceberg.vim')
-call dein#add('itchyny/lightline.vim')
-call dein#add('ryanoasis/vim-devicons')
-call dein#add('tpope/vim-commentary')
-call dein#add('tpope/vim-fugitive')
-if has('nvim')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
+
+  if has('nvim')
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('cocopon/iceberg.vim')
+    call dein#add('itchyny/lightline.vim')
+    call dein#add('preservim/nerdtree')
+    call dein#add('ryanoasis/vim-devicons')
+    call dein#add('tpope/vim-commentary')
+    call dein#add('tpope/vim-fugitive')
+  endif
+
+  " Lazy load
+  " markdown
+  call dein#add('rcmdnk/vim-markdown', {'on_ft' : ['markdown', 'txt']})
+
+  call dein#end()
+  call dein#save_state()
 endif
-
-" Lazy load
-" markdown
-call dein#add('rcmdnk/vim-markdown', {'on_ft' : ['markdown', 'txt']})
-
-call dein#end()
 
 " itchyny/lightline.vim
 let g:lightline = {
@@ -107,6 +117,13 @@ endfunction
 function! MyFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) . ' ' : ''
 endfunction
+
+" preservim/nerdtree
+let NERDTreeShowHidden=1
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " Color Scheme
 colorscheme iceberg
