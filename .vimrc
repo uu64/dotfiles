@@ -9,6 +9,7 @@ if &compatible
   set nocompatible
 endif
 
+
 " Appearance
 set cursorline
 set title
@@ -17,27 +18,33 @@ set numberwidth=5
 set list
 set listchars=eol:¬,tab:▸\ ,trail:.
 " set noshowmode
+"
 
 " Indent
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
+
 " Fold
 set foldlevel=100
+
 
 " Encoding
 set encoding=utf-8
 scriptencoding utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,sjis,cp932,euc-jp,cp20932
 
+
 " Clipboard
 set clipboard=unnamed,unnamedplus
+
 
 " Nvim
 if has('nvim')
   set inccommand=split
 endif
+
 
 " File Types
 augroup vimrc_filetype
@@ -46,8 +53,12 @@ augroup vimrc_filetype
   autocmd BufRead,BufNewFile *.txt set filetype=markdown
 augroup END
 
+
 " KeyMap
 let g:mapleader = "\<Space>"
+
+" semicolon to colon
+noremap ; :
 
 " jj is Esc
 inoremap <silent> jj <ESC>
@@ -69,6 +80,7 @@ nnoremap sb <C-w>b
 " Move tabs
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
+
 
 " Plugins
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -125,8 +137,10 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+
 " Color Scheme
 colorscheme iceberg
+
 
 " finally
 filetype plugin indent on
