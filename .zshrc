@@ -52,7 +52,10 @@ bindkey -M menuselect 'l' vi-forward-char
 
 
 # sindresorhus/pure
-PURE_PROMPT_SYMBOL='$'
+if [ -n "${SSH_CONNECTION}" ];
+then
+  PURE_PROMPT_SYMBOL='$'
+fi
 
 
 # zsh-users/zsh-history-substring-search
