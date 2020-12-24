@@ -81,6 +81,9 @@ nnoremap sb <C-w>b
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
+" File search
+nnoremap <C-p> :Files<CR>
+
 
 " Plugins
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -94,10 +97,13 @@ if dein#load_state('~/.cache/dein')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('cocopon/iceberg.vim')
     call dein#add('itchyny/lightline.vim')
+    call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
+    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
     call dein#add('preservim/nerdtree')
     call dein#add('ryanoasis/vim-devicons')
     call dein#add('tpope/vim-commentary')
     call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-surround')
   endif
 
   " Lazy load
