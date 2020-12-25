@@ -6,7 +6,7 @@
   loop:
     - { name: .zshrc, dest: ~/.zshrc }
     - { name: .zshenv, dest: ~/.zshenv }
-    # - { name: .vimrc, dest: ~/.vimrc }
+    - { name: .vimrc, dest: ~/.vimrc }
     - { name: .vimrc, dest: ~/.config/nvim/init.vim }
     - { name: .config/nvim/coc-settings.json, dest: ~/.config/nvim/coc-settings.json }
     - { name: .config/nvim/ftplugin/go.vim, dest: ~/.config/nvim/ftplugin/go.vim }
