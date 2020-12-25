@@ -18,8 +18,8 @@ set number
 set numberwidth=5
 set list
 set listchars=eol:¬,tab:▸\ ,trail:.
-" set noshowmode
-"
+set signcolumn=yes
+
 
 " Indent
 set tabstop=4
@@ -104,27 +104,18 @@ if dein#load_state('~/.cache/dein')
   call dein#add('preservim/nerdtree')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('Shougo/deoplete.nvim')
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-surround')
 
   if has('nvim')
-    call dein#add('autozimu/LanguageClient-neovim', {
-        \ 'rev': 'next',
-        \ 'build': 'bash install.sh',
-        \ })
+    call dein#add('neoclide/coc.nvim', {'branch': 'release'})
   endif
 
   call dein#end()
   call dein#save_state()
 endif
 
-" autozimu/LanguageClient-neovim
-let g:LanguageClient_serverCommands = {
-       \ 'go': ['gopls']
-       \ }
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " itchyny/lightline.vim
 let g:lightline = {
@@ -155,8 +146,25 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-" 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
+" neoclide/coc.nvim
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
 " Color Scheme

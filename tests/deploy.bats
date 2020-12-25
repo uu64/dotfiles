@@ -20,6 +20,11 @@
   [ "${status}" -eq 0 ]
 }
 
+@test "coc-settings.json is present" {
+  run ls ~/.config/nvim/coc-settings.json
+  [ "${status}" -eq 0 ]
+}
+
 @test "go.vim is present" {
   run ls ~/.config/nvim/ftplugin/go.vim
   [ "${status}" -eq 0 ]

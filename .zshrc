@@ -84,7 +84,7 @@ function fzf_open() {
   BUFFER="$(ag -g "" | fzf)"
   if [ -n "$BUFFER" ];
   then
-    BUFFER="bat $BUFFER"
+    BUFFER="vi $BUFFER"
     zle accept-line
   fi
 }
