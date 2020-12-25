@@ -20,6 +20,11 @@
   [ "${status}" -eq 0 ]
 }
 
+@test "go.vim is present" {
+  run ls ~/.config/nvim/ftplugin/go.vim
+  [ "${status}" -eq 0 ]
+}
+
 @test ".tmux.conf is present" {
   run ls ~/.tmux.conf
   [ "${status}" -eq 0 ]

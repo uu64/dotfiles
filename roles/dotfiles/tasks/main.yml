@@ -8,6 +8,7 @@
     - { name: .zshenv, dest: ~/.zshenv }
     # - { name: .vimrc, dest: ~/.vimrc }
     - { name: .vimrc, dest: ~/.config/nvim/init.vim }
+    - { name: .config/nvim/ftplugin/go.vim, dest: ~/.config/nvim/ftplugin/go.vim }
     - { name: .tmux.conf, dest: ~/.tmux.conf }
 
 - name: Create ~/.config/dotfiles
