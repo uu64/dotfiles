@@ -8,6 +8,7 @@
 if &compatible
   set nocompatible
 endif
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
 
 
 " Appearance
@@ -49,8 +50,9 @@ endif
 " File Types
 augroup vimrc_filetype
   autocmd!
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd BufRead,BufNewFile *.txt set filetype=markdown
+  autocmd BufRead,BufNewFile *.md setfiletype markdown
+  autocmd BufRead,BufNewFile *.txt setfiletype markdown
+  autocmd BufRead,BufNewFile *.go setfiletype go
 augroup END
 
 
@@ -82,7 +84,7 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
 " File search
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 
 
 " Plugins
@@ -95,6 +97,10 @@ if dein#load_state('~/.cache/dein')
 
   if has('nvim')
     call dein#add('airblade/vim-gitgutter')
+    call dein#add('autozimu/LanguageClient-neovim', {
+        \ 'rev': 'next',
+        \ 'build': 'bash install.sh',
+        \ })
     call dein#add('cocopon/iceberg.vim')
     call dein#add('itchyny/lightline.vim')
     call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
@@ -113,6 +119,12 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
+" autozimu/LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+       \ 'go': ['gopls']
+       \ }
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " itchyny/lightline.vim
 let g:lightline = {
@@ -142,6 +154,9 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
 
 
 " Color Scheme
