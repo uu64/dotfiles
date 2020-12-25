@@ -81,7 +81,7 @@ function fzf_history() {
 }
 
 function fzf_open() {
-  BUFFER="$(ag -g "" | fzf)"
+  BUFFER="$(ag -g "" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")"
   if [ -n "$BUFFER" ];
   then
     BUFFER="vi $BUFFER"
