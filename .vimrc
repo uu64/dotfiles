@@ -93,28 +93,28 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('cocopon/iceberg.vim')
+  call dein#add('godlygeek/tabular')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
+  call dein#add('preservim/nerdtree')
+  call dein#add('ryanoasis/vim-devicons')
+  call dein#add('sheerun/vim-polyglot')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-surround')
 
   if has('nvim')
-    call dein#add('airblade/vim-gitgutter')
     call dein#add('autozimu/LanguageClient-neovim', {
         \ 'rev': 'next',
         \ 'build': 'bash install.sh',
         \ })
-    call dein#add('cocopon/iceberg.vim')
-    call dein#add('itchyny/lightline.vim')
-    call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
-    call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-    call dein#add('preservim/nerdtree')
-    call dein#add('ryanoasis/vim-devicons')
-    call dein#add('tpope/vim-commentary')
-    call dein#add('tpope/vim-fugitive')
-    call dein#add('tpope/vim-surround')
   endif
-
-  " Lazy load
-  " markdown
-  call dein#add('rcmdnk/vim-markdown', {'on_ft' : ['markdown', 'txt']})
 
   call dein#end()
   call dein#save_state()
@@ -128,7 +128,7 @@ autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " itchyny/lightline.vim
 let g:lightline = {
-    \ 'colorscheme': 'seoul256',
+    \ 'colorscheme': 'iceberg',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
