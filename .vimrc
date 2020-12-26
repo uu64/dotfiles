@@ -19,9 +19,11 @@ set numberwidth=5
 set list
 set listchars=eol:¬,tab:▸\ ,trail:.
 set signcolumn=yes
+set laststatus=2
 
 
 " Indent
+set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -173,11 +175,13 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Color Scheme
 colorscheme iceberg
+set termguicolors
+set background=dark
+syntax on
 
 
 " finally
 filetype plugin indent on
-syntax enable
 
 if dein#check_install()
   call dein#install()
