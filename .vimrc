@@ -87,11 +87,6 @@ nnoremap sb <C-w>b
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
-" Scroll
-set mouse=a
-noremap <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
-
 " File search
 nnoremap <C-p> :GFiles<CR>
 
@@ -104,7 +99,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('airblade/vim-gitgutter')
-  " call dein#add('cocopon/iceberg.vim')
   call dein#add('ghifarit53/tokyonight-vim')
   call dein#add('godlygeek/tabular')
   call dein#add('itchyny/lightline.vim')
@@ -178,6 +172,14 @@ set shortmess+=c
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" yuttie/comfortable-motion.vim
+set mouse=a
+let g:comfortable_motion_no_default_key_mappings = 1
+nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+noremap <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
 
 " Color Scheme
