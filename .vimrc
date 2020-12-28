@@ -20,6 +20,7 @@ set list
 set listchars=eol:¬,tab:▸\ ,trail:.
 set signcolumn=yes
 set laststatus=2
+set showtabline=2
 
 
 " Indent
@@ -90,6 +91,10 @@ nnoremap th :tabprev<CR>
 " File search
 nnoremap <C-p> :GFiles<CR>
 
+" Quickly open/reload vim
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 
 " Plugins
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
@@ -105,6 +110,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('kassio/neoterm')
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
   call dein#add('preservim/nerdtree')
   call dein#add('ryanoasis/vim-devicons')
@@ -122,7 +128,6 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
-
 
 " itchyny/lightline.vim
 let g:lightline = {
@@ -145,6 +150,14 @@ endfunction
 function! MyFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) . ' ' : ''
 endfunction
+
+" kassio/neoterm
+let g:neoterm_autoinsert = 1
+let g:neoterm_autoscroll = 1
+let g:neoterm_default_mod = 'belowright'
+let g:neoterm_use_relative_path = 1
+nnoremap <c-t><c-t> :Ttoggle<CR>
+tnoremap <c-t><c-t> <C-\><C-n>:Ttoggle<CR>
 
 " preservim/nerdtree
 let NERDTreeShowHidden=1
