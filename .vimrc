@@ -87,6 +87,11 @@ nnoremap sb <C-w>b
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
+" Scroll
+set mouse=a
+noremap <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
 " File search
 nnoremap <C-p> :GFiles<CR>
 
@@ -113,6 +118,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-surround')
+  call dein#add('yuttie/comfortable-motion.vim')
 
   if has('nvim')
     call dein#add('neoclide/coc.nvim', {'branch': 'release'})
