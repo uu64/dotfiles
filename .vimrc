@@ -104,7 +104,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('cocopon/iceberg.vim')
+  " call dein#add('cocopon/iceberg.vim')
+  call dein#add('ghifarit53/tokyonight-vim')
   call dein#add('godlygeek/tabular')
   call dein#add('itchyny/lightline.vim')
   call dein#add('jiangmiao/auto-pairs')
@@ -131,7 +132,7 @@ endif
 
 " itchyny/lightline.vim
 let g:lightline = {
-    \ 'colorscheme': 'iceberg',
+    \ 'colorscheme': 'tokyonight',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -180,7 +181,9 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 
 " Color Scheme
-colorscheme iceberg
+let g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
 set termguicolors
 set background=dark
 syntax on
