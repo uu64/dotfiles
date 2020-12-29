@@ -21,6 +21,8 @@ set listchars=eol:¬,tab:▸\ ,trail:.
 set signcolumn=yes
 set laststatus=2
 set showtabline=2
+set splitbelow
+set splitright
 
 
 " Indent
@@ -75,14 +77,14 @@ noremap <Leader>l $
 
 " Move windows
 nnoremap <Leader><Tab> <C-w>w
-nnoremap ws :split<CR>
-nnoremap wv :vsplit<CR>
-nnoremap wh <C-w>h
-nnoremap wj <C-w>j
-nnoremap wk <C-w>k
-nnoremap wl <C-w>l
-nnoremap wt <C-w>t
-nnoremap wb <C-w>b
+nnoremap <Leader>ws :split<CR>
+nnoremap <Leader>wv :vsplit<CR>
+nnoremap <Leader>wh <C-w>h
+nnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wl <C-w>l
+nnoremap <Leader>wt <C-w>t
+nnoremap <Leader>wb <C-w>b
 
 " Move tabs
 nnoremap tl :tabnext<CR>
@@ -92,8 +94,17 @@ nnoremap th :tabprev<CR>
 nnoremap <C-p> :GFiles<CR>
 
 " Quickly open/reload vim
-nnoremap edvi :vsplit $MYVIMRC<CR>
-nnoremap sovi :source $MYVIMRC<CR>
+nnoremap <Leader>ve :split $MYVIMRC<CR>
+nnoremap <Leader>vs :source $MYVIMRC<CR>
+
+" Save
+nnoremap <Leader>w :w<CR>
+
+" Buffer
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bb :b#<CR>
+nnoremap <Leader>bd :bdelete<CR>
 
 
 " Plugins
@@ -158,10 +169,11 @@ let g:neoterm_default_mod = 'belowright'
 let g:neoterm_use_relative_path = 1
 nnoremap <c-t><c-t> :Ttoggle<CR>
 tnoremap <c-t><c-t> <C-\><C-n>:Ttoggle<CR>
+tnoremap <silent> <ESC> <C-\><C-n>
 
 " preservim/nerdtree
 let NERDTreeShowHidden=1
-nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <Leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
