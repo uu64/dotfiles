@@ -75,14 +75,14 @@ noremap <Leader>l $
 
 " Move windows
 nnoremap <Leader><Tab> <C-w>w
-nnoremap ss :split<CR>
-nnoremap sv :vsplit<CR>
-nnoremap sh <C-w>h
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap st <C-w>t
-nnoremap sb <C-w>b
+nnoremap ws :split<CR>
+nnoremap wv :vsplit<CR>
+nnoremap wh <C-w>h
+nnoremap wj <C-w>j
+nnoremap wk <C-w>k
+nnoremap wl <C-w>l
+nnoremap wt <C-w>t
+nnoremap wb <C-w>b
 
 " Move tabs
 nnoremap tl :tabnext<CR>
@@ -92,8 +92,8 @@ nnoremap th :tabprev<CR>
 nnoremap <C-p> :GFiles<CR>
 
 " Quickly open/reload vim
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap edvi :vsplit $MYVIMRC<CR>
+nnoremap sovi :source $MYVIMRC<CR>
 
 
 " Plugins
