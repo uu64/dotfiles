@@ -98,7 +98,7 @@ nnoremap <Leader>ve :split $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
 
 " Save
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>s :w<CR>
 
 " Buffer
 nnoremap <Leader>bp :bprevious<CR>
