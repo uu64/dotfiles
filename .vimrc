@@ -115,6 +115,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('dense-analysis/ale')
   call dein#add('ghifarit53/tokyonight-vim')
   call dein#add('godlygeek/tabular')
   call dein#add('itchyny/lightline.vim')
@@ -140,19 +141,24 @@ if dein#load_state('~/.cache/dein')
   call dein#save_state()
 endif
 
+" dense-analysis/ale
+let g:ale_linters = {
+      \ 'golang': ['golint', 'go vet']
+      \ }
+
 " itchyny/lightline.vim
 let g:lightline = {
-    \ 'colorscheme': 'tokyonight',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-    \ },
-    \ 'component_function': {
-    \   'gitbranch': 'fugitive#head',
-    \   'filetype': 'MyFiletype',
-    \   'fileformat': 'MyFileformat',
-    \ },
-    \ }
+      \ 'colorscheme': 'tokyonight',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
+      \ },
+      \ }
 
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() . ' ' : 'no ft') : ''
