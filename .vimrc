@@ -123,7 +123,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
   call dein#add('kassio/neoterm')
-  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
   call dein#add('preservim/nerdtree')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('simeji/winresizer')
@@ -137,14 +136,21 @@ if dein#load_state('~/.cache/dein')
     call dein#add('neoclide/coc.nvim', {'branch': 'release'})
   endif
 
+  " lazy load
+  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
+
   call dein#end()
   call dein#save_state()
 endif
 
 " dense-analysis/ale
 let g:ale_linters = {
-      \ 'golang': ['golint', 'go vet']
+      \ 'go': ['golint', 'go vet']
       \ }
+let g:ale_fixers = {
+      \ 'go': ['goimports']
+      \ }
+let g:ale_fix_on_save = 1
 
 " itchyny/lightline.vim
 let g:lightline = {
