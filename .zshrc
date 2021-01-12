@@ -75,12 +75,12 @@ export ENHANCD_HYPHEN_NUM=100
 # junegunn/fzf-bin
 export FZF_DEFAULT_OPTS="--exact --layout reverse --no-sort"
 
-function fzf_history() {
+function search_history() {
   BUFFER=$(history -n -r 1 | fzf)
   CURSOR=$#BUFFER
 }
 
-function fzf_open() {
+function search_file() {
   BUFFER="$(ag -g "" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")"
   if [ -n "$BUFFER" ];
   then
@@ -89,11 +89,23 @@ function fzf_open() {
   fi
 }
 
-zle -N fzf_history
-bindkey '^r' fzf_history
+function search_ghq() {
+  BUFFER="$(ghq list -p | fzf)"
+  if [ -n "$BUFFER" ];
+  then
+    BUFFER="cd $BUFFER"
+    zle accept-line
+  fi
+}
 
-zle -N fzf_open
-bindkey '^o' fzf_open
+zle -N search_history
+bindkey '^r' search_history
+
+zle -N search_file
+bindkey '^o' search_file
+
+zle -N search_ghq
+bindkey '^[' search_ghq
 
 
 # awscli
