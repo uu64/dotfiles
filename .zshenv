@@ -38,4 +38,3 @@ export NVM_DIR="$HOME/.nvm"
 
 # custom configuration
 source "${DOTFILES_HOME}/zsh-custom-conf.zsh"
-source "$HOME/.cargo/env"
