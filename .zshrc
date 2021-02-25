@@ -116,6 +116,9 @@ complete -C "$(which aws_completer)" aws
 alias la='ls -A'
 alias ll='ls -l'
 
+alias less='bat'
+alias diff='diff -u'
+
 alias cgrep='grep --color=always'
 
 alias vi='nvim'
@@ -129,7 +132,7 @@ case "${OSTYPE}" in
     alias cdiff='colordiff -u'
   ;;
   linux*)
-    alias bat="batcat"
+    alias bat='batcat'
     alias ls='ls -hF --color=always'
     alias cdiff='diff -u --color'
   ;;
