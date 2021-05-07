@@ -1,0 +1,13 @@
+! __  ___ __ ___   ___   __| |_ __ ___   __ _ _ __  
+! \ \/ / '_ ` _ \ / _ \ / _` | '_ ` _ \ / _` | '_ \ 
+!  >  <| | | | | | (_) | (_| | | | | | | (_| | |_) |
+! /_/\_\_| |_| |_|\___/ \__,_|_| |_| |_|\__,_| .__/ 
+!                                            |_|  
+
+! Caps Lock -> Ctrl
+remove Lock = Caps_Lock  
+keysym Caps_Lock = Control_L  
+add Control = Control_L  
+
+! Change super key windows -> muhenkan
+! keycode 102 = Super_L
