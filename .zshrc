@@ -98,6 +98,15 @@ function search_ghq() {
   fi
 }
 
+function fzf_checkout_branch() {
+  BUFFER="$(git branch --format="%(refname:short)" --all --remotes | fzf)"
+  if [ -n "$BUFFER" ];
+  then
+    # BUFFER="git checkout -b $(echo $BUFFER | sed -e "s/origin\///g") $BUFFER"
+    CURSOR=$#BUFFER
+  fi
+}
+
 zle -N search_history
 bindkey '^r' search_history
 
