@@ -98,13 +98,21 @@ function search_ghq() {
   fi
 }
 
-function fzf_checkout_branch() {
-  BUFFER="$(git branch --format="%(refname:short)" --all --remotes | fzf)"
-  if [ -n "$BUFFER" ];
-  then
-    # BUFFER="git checkout -b $(echo $BUFFER | sed -e "s/origin\///g") $BUFFER"
-    CURSOR=$#BUFFER
-  fi
+# fbr - checkout git branch
+fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | sed "s/\* //" | awk '{print $1}')
+}
+
+# fbrm - checkout git branch (including remote branches)
+fbrm() {
+  local branches branch
+  branches=$(git branch -vv --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/\* //" | awk '{print $1}' | sed "s#remotes/[^/]*/##")
 }
 
 zle -N search_history
