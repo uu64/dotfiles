@@ -98,16 +98,16 @@ function search_ghq() {
   fi
 }
 
-# fbr - checkout git branch
-fbr() {
+# fb - checkout git branch
+fb() {
   local branches branch
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | sed "s/\* //" | awk '{print $1}')
 }
 
-# fbrm - checkout git branch (including remote branches)
-fbrm() {
+# fbr - checkout git branch (including remote branches)
+fbr() {
   local branches branch
   branches=$(git branch -vv --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
