@@ -115,8 +115,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('arcticicestudio/nord-vim')
   call dein#add('dense-analysis/ale')
-  call dein#add('ghifarit53/tokyonight-vim')
   call dein#add('godlygeek/tabular')
   call dein#add('itchyny/lightline.vim')
   call dein#add('jiangmiao/auto-pairs')
@@ -154,7 +154,7 @@ let g:ale_fix_on_save = 1
 
 " itchyny/lightline.vim
 let g:lightline = {
-      \ 'colorscheme': 'tokyonight',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -238,12 +238,25 @@ noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
 
 
 " Color Scheme
-let g:tokyonight_style = 'night'
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+colorscheme nord
 set termguicolors
 set background=dark
 syntax on
+
+let g:fzf_colors =
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Comment'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['bg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 
 " finally
