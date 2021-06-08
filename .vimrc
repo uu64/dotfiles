@@ -124,129 +124,26 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   call dein#load_toml(s:dein_config_dir . '/dein/plugins.toml')
 
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('arcticicestudio/nord-vim')
-  call dein#add('dense-analysis/ale')
-  call dein#add('godlygeek/tabular')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('junegunn/fzf', { 'build': './install --all --no-bash', 'merged': 0 })
-  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-  call dein#add('kassio/neoterm')
-  call dein#add('preservim/nerdtree')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('simeji/winresizer')
-  call dein#add('sheerun/vim-polyglot')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-surround')
-  call dein#add('yuttie/comfortable-motion.vim')
-
-  if has('nvim')
-    call dein#add('neoclide/coc.nvim', {'branch': 'release'})
-  endif
-
-  " lazy load
-  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
+  " " lazy load
+  " call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
 
   call dein#end()
   call dein#save_state()
 endif
 
-" dense-analysis/ale
-let g:ale_linters = {
-      \ 'go': ['golint', 'go vet']
-      \ }
-let g:ale_fixers = {
-      \ 'go': ['goimports']
-      \ }
-let g:ale_fix_on_save = 1
+if dein#check_install()
+  call dein#install()
+endif
 
-" itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'filetype': 'MyFiletype',
-      \   'fileformat': 'MyFileformat',
-      \ },
-      \ }
 
-function! MyFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() . ' ' : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) . ' ' : ''
-endfunction
-
-" kassio/neoterm
-let g:neoterm_autoinsert = 1
-let g:neoterm_autoscroll = 1
-let g:neoterm_default_mod = 'belowright'
-let g:neoterm_use_relative_path = 1
-nnoremap <c-t><c-t> :Ttoggle<CR>
-tnoremap <c-t><c-t> <C-\><C-n>:Ttoggle<CR>
-tnoremap <silent> <ESC> <C-\><C-n>
-
-" preservim/nerdtree
-let NERDTreeShowHidden=1
-nnoremap <Leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" neoclide/coc.nvim
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Key mappings for coc.nvim
-nmap <silent> cd <Plug>(coc-definition)
-nmap <silent> cy <Plug>(coc-type-definition)
-nmap <silent> ci <Plug>(coc-implementation)
-nmap <silent> crf <Plug>(coc-references)
-nmap <silent> crn <Plug>(coc-rename)
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" yuttie/comfortable-motion.vim
-set mouse=a
-let g:comfortable_motion_no_default_key_mappings = 1
-nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
-noremap <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
-noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+" " dense-analysis/ale
+" let g:ale_linters = {
+"       \ 'go': ['golint', 'go vet']
+"       \ }
+" let g:ale_fixers = {
+"       \ 'go': ['goimports']
+"       \ }
+" let g:ale_fix_on_save = 1
 
 
 " Color Scheme
@@ -255,26 +152,7 @@ set termguicolors
 set background=dark
 syntax on
 
-let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
-            \ 'bg':      ['bg', 'Normal'],
-            \ 'hl':      ['fg', 'Comment'],
-            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-            \ 'hl+':     ['fg', 'Statement'],
-            \ 'info':    ['fg', 'PreProc'],
-            \ 'border':  ['fg', 'Comment'],
-            \ 'prompt':  ['fg', 'Conditional'],
-            \ 'pointer': ['fg', 'Exception'],
-            \ 'marker':  ['bg', 'Keyword'],
-            \ 'spinner': ['fg', 'Label'],
-            \ 'header':  ['fg', 'Comment'] }
-
 
 " finally
 filetype plugin indent on
 
-if dein#check_install()
-  call dein#install()
-endif
-call map(dein#check_clean(), "delete(v:val, 'rf')")

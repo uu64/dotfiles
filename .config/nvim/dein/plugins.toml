@@ -1,56 +1,173 @@
+# dein
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
 
+# appearance
 [[plugins]]
 repo = 'arcticicestudio/nord-vim'
 
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+        \ 'colorscheme': 'nord',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head',
+        \   'filetype': 'MyFiletype',
+        \   'fileformat': 'MyFileformat',
+        \ },
+        \ }
+
+  function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() . ' ' : 'no ft') : ''
+  endfunction
+
+  function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) . ' ' : ''
+  endfunction
+'''
+
+[[plugins]]
+repo = 'preservim/nerdtree'
+hook_add = '''
+  let nerdtreeshowhidden=1
+  nnoremap <leader>n :nerdtreefocus<cr>
+  nnoremap <c-n> :nerdtree<cr>
+  nnoremap <C-t> :NERDTreeToggle<CR>
+  nnoremap <C-f> :NERDTreeFind<CR>
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+
+# fuzzy finder
+[[plugins]]
+repo   = 'junegunn/fzf'
+build  = './install --all --no-bash'
+merged = 0
+
+[[plugins]]
+repo    = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+  let g:fzf_colors = {
+    \ 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Label'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Label'],
+    \ 'info':    ['fg', 'Comment'],
+    \ 'border':  ['fg', 'Comment'],
+    \ 'prompt':  ['fg', 'Function'],
+    \ 'pointer': ['fg', 'Statement'],
+    \ 'marker':  ['fg', 'Conditional'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
+'''
+
+
+# git integration
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+
+# language support
+[[plugins]]
 repo = 'dense-analysis/ale'
 
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+hook_add = '''
+  " if hidden is not set, textedit might fail.
+  set hidden
+
+  " Some servers have issues with backup files, see #649
+  set nobackup
+  set nowritebackup
+
+  " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+  " delays and poor user experience.
+  set updatetime=300
+
+  " Don't pass messages to |ins-completion-menu|.
+  set shortmess+=c
+
+  " Make <CR> auto-select the first completion item and notify coc.nvim to
+  " format on enter, <cr> could be remapped by other vim plugin
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  " Key mappings for coc.nvim
+  nmap <silent> cd <Plug>(coc-definition)
+  nmap <silent> cy <Plug>(coc-type-definition)
+  nmap <silent> ci <Plug>(coc-implementation)
+  nmap <silent> crf <Plug>(coc-references)
+  nmap <silent> crn <Plug>(coc-rename)
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+      call CocActionAsync('doHover')
+    else
+      execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
+  endfunction
+'''
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+
+# terminal
+[[plugins]]
+repo = 'kassio/neoterm'
+hook_add = '''
+  let g:neoterm_autoinsert = 1
+  let g:neoterm_autoscroll = 1
+  let g:neoterm_default_mod = 'belowright'
+  let g:neoterm_use_relative_path = 1
+  nnoremap <c-t><c-t> :Ttoggle<CR>
+  tnoremap <c-t><c-t> <C-\><C-n>:Ttoggle<CR>
+  tnoremap <silent> <ESC> <C-\><C-n>
+'''
+
+
+# misc
 [[plugins]]
 repo = 'godlygeek/tabular'
 
 [[plugins]]
-repo = 'itchyny/lightline.vim'
-
-[[plugins]]
-repo = 'jiangmiao/auto-pairas'
-
-[[plugins]]
-repo = 'junegunn/fzf'
-
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-
-[[plugins]]
-repo = 'kassio/neoterm'
-
-[[plugins]]
-repo = 'preservim/nerdtree'
-
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
+repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
 repo = 'simeji/winresizer'
 
 [[plugins]]
-repo = 'sheerun/vim-polyglot'
-
-[[plugins]]
 repo = 'tpope/vim-commentary'
-
-[[plugins]]
-repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'yuttie/compatible-motion.vim'
+repo = 'yuttie/comfortable-motion.vim'
+hook_add = '''
+  set mouse=a
+  let g:comfortable_motion_no_default_key_mappings = 1
+  nnoremap <silent> <C-d> :call comfortable_motion#flick(100)<CR>
+  nnoremap <silent> <C-u> :call comfortable_motion#flick(-100)<CR>
+  noremap <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+  noremap <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+'''
 
-[[plugins]]
-repo = ''
