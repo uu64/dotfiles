@@ -21,6 +21,16 @@ hook_add = '''
         \   'filetype': 'MyFiletype',
         \   'fileformat': 'MyFileformat',
         \ },
+        \ 'tabline': {
+        \   'left': [ ['buffers'] ],
+        \   'right': [ ['close'] ]
+        \ },
+        \ 'component_expand': {
+        \   'buffers': 'lightline#bufferline#buffers'
+        \ },
+        \ 'component_type': {
+        \   'buffers': 'tabsel'
+        \ }
         \ }
 
   function! MyFiletype()
@@ -30,6 +40,12 @@ hook_add = '''
   function! MyFileformat()
     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) . ' ' : ''
   endfunction
+'''
+
+[[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+hook_add = '''
+  let g:lightline#bufferline#show_number  = 1
 '''
 
 [[plugins]]
