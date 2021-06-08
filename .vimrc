@@ -147,7 +147,7 @@ endif
 
 
 " Color Scheme
-colorscheme nord
+colorscheme iceberg
 set termguicolors
 set background=dark
 syntax on

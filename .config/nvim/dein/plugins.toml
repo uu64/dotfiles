@@ -5,13 +5,14 @@ repo = 'Shougo/dein.vim'
 
 # appearance
 [[plugins]]
-repo = 'arcticicestudio/nord-vim'
+# repo = 'arcticicestudio/nord-vim'
+repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
   let g:lightline = {
-        \ 'colorscheme': 'nord',
+        \ 'colorscheme': 'iceberg',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
         \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -55,22 +56,22 @@ merged = 0
 [[plugins]]
 repo    = 'junegunn/fzf.vim'
 depends = 'fzf'
-hook_add = '''
-  let g:fzf_colors = {
-    \ 'fg':      ['fg', 'Normal'],
-    \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'Label'],
-    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    \ 'hl+':     ['fg', 'Label'],
-    \ 'info':    ['fg', 'Comment'],
-    \ 'border':  ['fg', 'Comment'],
-    \ 'prompt':  ['fg', 'Function'],
-    \ 'pointer': ['fg', 'Statement'],
-    \ 'marker':  ['fg', 'Conditional'],
-    \ 'spinner': ['fg', 'Label'],
-    \ 'header':  ['fg', 'Comment'] }
-'''
+# hook_add = '''
+#   let g:fzf_colors = {
+#     \ 'fg':      ['fg', 'Normal'],
+#     \ 'bg':      ['bg', 'Normal'],
+#     \ 'hl':      ['fg', 'Label'],
+#     \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+#     \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+#     \ 'hl+':     ['fg', 'Label'],
+#     \ 'info':    ['fg', 'Comment'],
+#     \ 'border':  ['fg', 'Comment'],
+#     \ 'prompt':  ['fg', 'Function'],
+#     \ 'pointer': ['fg', 'Statement'],
+#     \ 'marker':  ['fg', 'Conditional'],
+#     \ 'spinner': ['fg', 'Label'],
+#     \ 'header':  ['fg', 'Comment'] }
+# '''
 
 
 # git integration
