@@ -17,12 +17,14 @@ set title
 set number
 set numberwidth=5
 set list
-set listchars=eol:¬,tab:▸\ ,trail:.
 set signcolumn=yes
 set laststatus=2
 set showtabline=2
 set splitbelow
 set splitright
+set listchars=eol:¬,tab:▸\ ,space:.
+autocmd VimEnter,Colorscheme * highlight NonText guibg=NONE ctermbg=None guifg=#3e445e ctermfg=237
+autocmd VimEnter,Colorscheme * highlight SpecialKey guibg=NONE ctermbg=None guifg=#3e445e ctermfg=237
 
 
 " Indent
