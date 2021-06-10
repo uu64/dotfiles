@@ -151,6 +151,7 @@ endif
 
 " Color Scheme
 colorscheme iceberg
+" TODO: echo "\e[48;5;236m      \e\e[48;5;237m      \e"
 set termguicolors
 set background=dark
 syntax on
