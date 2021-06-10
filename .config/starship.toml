@@ -4,3 +4,6 @@ error_symbol = "[➜](bold red) "
 
 [aws]
 disabled = true
+
+[gcloud]
+disabled = true

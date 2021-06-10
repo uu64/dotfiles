@@ -6,6 +6,7 @@
   loop:
     - { name: .zshrc, dest: ~/.zshrc }
     - { name: .zshenv, dest: ~/.zshenv }
+    - { name: .config/starship.toml, dest: ~/.config/starship.toml }
     - { name: .vimrc, dest: ~/.vimrc }
     - { name: .vimrc, dest: ~/.config/nvim/init.vim }
     - { name: .config/nvim/coc-settings.json, dest: ~/.config/nvim/coc-settings.json }
