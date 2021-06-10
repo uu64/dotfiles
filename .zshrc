@@ -13,7 +13,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "mafredri/zsh-async", from:github
 zplug "plugins/git", from:oh-my-zsh
-zplug "sindresorhus/pure, use:pure.zsh," from:github, as:theme
+# zplug "sindresorhus/pure, use:pure.zsh," from:github, as:theme
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
@@ -25,6 +25,11 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
+
+# theme
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship.toml
 
 
 # history

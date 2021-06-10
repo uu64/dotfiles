@@ -43,8 +43,8 @@ repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
   let g:indent_guides_auto_colors = 0
   let g:indent_guides_exclude_filetypes = ['nerdtree', 'neoterm']
-  autocmd VimEnter,Colorscheme * highlight IndentGuidesOdd guibg=#272c42 ctermbg=236 guifg=#3e445e ctermfg=237
-  autocmd VimEnter,Colorscheme * highlight IndentGuidesEven guibg=#1e2132 ctermbg=235 guifg=#3e445e ctermfg=237
+  autocmd VimEnter,Colorscheme * highlight IndentGuidesOdd guibg=#161821 ctermbg=234 guifg=#242940 ctermfg=236
+  autocmd VimEnter,Colorscheme * highlight IndentGuidesEven guibg=#1e2132 ctermbg=235 guifg=#242940 ctermfg=236
   let g:indent_guides_enable_on_vim_startup = 1
 '''
 
