@@ -23,8 +23,8 @@ set showtabline=2
 set splitbelow
 set splitright
 set listchars=eol:¬,tab:▸\ ,space:.
-autocmd VimEnter,Colorscheme * highlight NonText guibg=NONE ctermbg=None guifg=#3e445e ctermfg=237
-autocmd VimEnter,Colorscheme * highlight SpecialKey guibg=NONE ctermbg=None guifg=#3e445e ctermfg=237
+autocmd VimEnter,Colorscheme * highlight NonText guibg=NONE ctermbg=None guifg=#242940 ctermfg=236
+autocmd VimEnter,Colorscheme * highlight SpecialKey guibg=NONE ctermbg=None guifg=#242940 ctermfg=236
 
 
 " Indent
@@ -151,7 +151,6 @@ endif
 
 " Color Scheme
 colorscheme iceberg
-" TODO: echo "\e[48;5;236m      \e\e[48;5;237m      \e"
 set termguicolors
 set background=dark
 syntax on
