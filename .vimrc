@@ -23,8 +23,8 @@ set showtabline=2
 set splitbelow
 set splitright
 set listchars=eol:¬,tab:▸\ ,space:.
-autocmd VimEnter,Colorscheme * highlight NonText guibg=NONE ctermbg=None guifg=#242940 ctermfg=236
-autocmd VimEnter,Colorscheme * highlight SpecialKey guibg=NONE ctermbg=None guifg=#242940 ctermfg=236
+autocmd VimEnter,Colorscheme * highlight NonText guibg=NONE ctermbg=None guifg=#3e445e ctermfg=237
+autocmd VimEnter,Colorscheme * highlight SpecialKey guibg=NONE ctermbg=None guifg=#34445e ctermfg=237
 
 
 " Indent
@@ -93,7 +93,7 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
 " File search
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-[> :GFiles<CR>
 
 " Quickly open/reload vim
 nnoremap <Leader>ve :split $MYVIMRC<CR>

@@ -14,22 +14,29 @@ hook_add = '''
         \ 'colorscheme': 'iceberg',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \             [ 'gitbranch', 'readonly', 'modified' ] ]
         \ },
         \ 'component_function': {
-        \   'gitbranch': 'fugitive#head',
-        \ },
-        \ 'tabline': {
-        \   'left': [ ['buffers'] ],
-        \   'right': [ ['close'] ]
+        \   'gitbranch': 'MyFugitive',
         \ },
         \ 'component_expand': {
         \   'buffers': 'lightline#bufferline#buffers'
         \ },
         \ 'component_type': {
         \   'buffers': 'tabsel'
+        \ },
+        \ 'tabline': {
+        \   'left': [ ['buffers'] ],
+        \   'right': [ ['close'] ]
+        \ },
+        \ 'separator': { 'left': "\ue0b8", 'right': "\ue0be" },
+        \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0b9" },
+        \ 'tabline_separator': { 'left': "\ue0bc", 'right': "\ue0ba" },
+        \ 'tabline_subseparator': { 'left': "\ue0bb", 'right': "\ue0bb" },
         \ }
-        \ }
+  function! MyFugitive()
+    return "\ue725 " . fugitive#head()
+  endfunction
 '''
 
 [[plugins]]
@@ -42,7 +49,7 @@ hook_add = '''
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
   let g:indent_guides_auto_colors = 0
-  let g:indent_guides_exclude_filetypes = ['nerdtree', 'neoterm']
+  let g:indent_guides_exclude_filetypes = ['nerdtree', 'neoterm', 'gitcommit']
   autocmd VimEnter,Colorscheme * highlight IndentGuidesOdd guibg=#161821 ctermbg=234 guifg=#242940 ctermfg=236
   autocmd VimEnter,Colorscheme * highlight IndentGuidesEven guibg=#1e2132 ctermbg=235 guifg=#242940 ctermfg=236
   let g:indent_guides_enable_on_vim_startup = 1
@@ -53,9 +60,7 @@ repo = 'preservim/nerdtree'
 hook_add = '''
   let nerdtreeshowhidden=1
   nnoremap <leader>n :nerdtreefocus<cr>
-  nnoremap <c-n> :nerdtree<cr>
-  nnoremap <C-t> :NERDTreeToggle<CR>
-  nnoremap <C-f> :NERDTreeFind<CR>
+  nnoremap <C-b> :NERDTreeToggle<CR>
 '''
 
 [[plugins]]
