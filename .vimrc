@@ -108,6 +108,10 @@ nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>bb :b#<CR>
 nnoremap <Leader>bd :bdelete<CR>
 
+" Search & Replace
+nnoremap <silent> <Space><Space> :let @/ = '\<' . expand('<cword>') . '\>'<CR>:set hlsearch<CR>
+nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+
 
 " Plugins
 let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME
