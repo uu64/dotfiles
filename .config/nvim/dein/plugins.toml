@@ -90,6 +90,15 @@ repo = 'tpope/vim-fugitive'
 # language support
 [[plugins]]
 repo = 'dense-analysis/ale'
+hook_add = """
+  let g:ale_linters = {
+        \ 'go': ['golint', 'go vet']
+        \ }
+  let g:ale_fixers = {
+        \ 'go': ['goimports']
+        \ }
+  let g:ale_fix_on_save = 1
+"""
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'

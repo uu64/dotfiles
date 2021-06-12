@@ -126,10 +126,7 @@ let &runtimepath = s:dein_repo_dir . ',' . &runtimepath
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   call dein#load_toml(s:dein_config_dir . '/dein/plugins.toml')
-
-  " " lazy load
-  " call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': ['markdown', 'txt']})
-
+  call dein#load_toml(s:dein_config_dir . '/dein/plugins_lazy.toml', {'lazy': 1})
   call dein#end()
   call dein#save_state()
 endif
@@ -137,16 +134,6 @@ endif
 if dein#check_install()
   call dein#install()
 endif
-
-
-" " dense-analysis/ale
-" let g:ale_linters = {
-"       \ 'go': ['golint', 'go vet']
-"       \ }
-" let g:ale_fixers = {
-"       \ 'go': ['goimports']
-"       \ }
-" let g:ale_fix_on_save = 1
 
 
 " Color Scheme
