@@ -50,7 +50,7 @@ hook_add = '''
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
   let g:indent_guides_auto_colors = 0
-  let g:indent_guides_exclude_filetypes = ['nerdtree', 'neoterm', 'gitcommit']
+  let g:indent_guides_exclude_filetypes = ['nerdtree', 'neoterm', 'gitcommit', 'fzf']
   autocmd VimEnter,Colorscheme * highlight IndentGuidesOdd guibg=#161821 ctermbg=234 guifg=#242940 ctermfg=236
   autocmd VimEnter,Colorscheme * highlight IndentGuidesEven guibg=#1e2132 ctermbg=235 guifg=#242940 ctermfg=236
   let g:indent_guides_enable_on_vim_startup = 1
@@ -75,8 +75,29 @@ build  = './install --all --no-bash'
 merged = 0
 
 [[plugins]]
-repo    = 'junegunn/fzf.vim'
-depends = 'fzf'
+repo     = 'junegunn/fzf.vim'
+depends  = 'fzf'
+hook_add = '''
+  let g:fzf_layout = { 'down': '30%' }
+  let g:fzf_colors =
+  \ { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  nnoremap <C-[> :GFiles<CR>
+'''
 
 
 # git integration

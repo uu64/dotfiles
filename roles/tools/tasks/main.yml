@@ -65,11 +65,13 @@
 
   when: not nvm.stat.exists
 
-- name: Install ag, bat, shellcheck and tmux using apt
+- name: Install ag, rg, bat, shellcheck and tmux using apt
   become: yes
   apt:
     pkg:
       - silversearcher-ag
+      # TODO
+      # - ripgrep
       - bat
       - shellcheck
       - tmux
@@ -77,10 +79,11 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: Install ag, bat, shellcheck tmux using brew
+- name: Install ag, rg, bat, shellcheck and tmux using brew
   community.general.homebrew:
     name:
       - the_silver_searcher
+      - ripgrep
       - bat
       - shellcheck
       - tmux

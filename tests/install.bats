@@ -47,6 +47,12 @@
   [[ "${status}" -eq 0 ]]
 }
 
+# TODO
+# # @test "rg is installed" {
+#   run which rg
+#   [[ "${status}" -eq 0 ]]
+# }
+
 @test "bat is installed" {
   if [ "$(uname)" = "Linux" ]
   then

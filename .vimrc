@@ -92,9 +92,6 @@ nnoremap <Leader>wb <C-w>b
 nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 
-" File search
-nnoremap <C-[> :GFiles<CR>
-
 " Quickly open/reload vim
 nnoremap <Leader>ve :split $MYVIMRC<CR>
 nnoremap <Leader>vs :source $MYVIMRC<CR>
