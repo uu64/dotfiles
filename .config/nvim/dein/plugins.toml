@@ -35,7 +35,7 @@ hook_add = '''
         \ 'tabline_subseparator': { 'left': "\ue0bb", 'right': "\ue0bb" },
         \ }
   function! MyFugitive()
-    return "\ue725 " . fugitive#head()
+    return exists('*fugitive#head') ? "\ue725 " . fugitive#head() : ""
   endfunction
 '''
 
