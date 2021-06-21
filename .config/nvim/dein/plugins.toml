@@ -60,7 +60,7 @@ hook_add = '''
 repo = 'preservim/nerdtree'
 hook_add = '''
   let nerdtreeshowhidden=1
-  nnoremap <leader>n :nerdtreefocus<cr>
+  nnoremap <leader>n :NERDTreeFocus<cr>
   nnoremap <C-b> :NERDTreeToggle<CR>
 '''
 
