@@ -14,7 +14,7 @@ hook_add = '''
         \ 'colorscheme': 'iceberg',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'modified' ] ]
+        \             [ 'gitbranch', 'filename', 'readonly', 'modified' ] ]
         \ },
         \ 'component_function': {
         \   'gitbranch': 'MyFugitive',
