@@ -123,11 +123,11 @@ fbr() {
 zle -N search_history
 bindkey '^r' search_history
 
-zle -N search_file
-bindkey '^[' search_file
+# zle -N search_file
+# bindkey '^[' search_file
 
-# zle -N search_ghq
-# bindkey '^[' search_ghq
+zle -N search_ghq
+bindkey '^[' search_ghq
 
 
 # awscli
