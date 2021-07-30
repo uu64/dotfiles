@@ -13,6 +13,7 @@
     - { name: .config/nvim/dein/plugins.toml, dest: ~/.config/nvim/dein/plugins.toml }
     - { name: .config/nvim/dein/plugins_lazy.toml, dest: ~/.config/nvim/dein/plugins_lazy.toml }
     - { name: .config/nvim/ftplugin/go.vim, dest: ~/.config/nvim/ftplugin/go.vim }
+    - { name: .config/nvim/ultisnips/python.snippets, dest: ~/.config/nvim/ultisnips/python.snippets }
     - { name: .tmux.conf, dest: ~/.tmux.conf }
 
 - name: Create ~/.config/dotfiles

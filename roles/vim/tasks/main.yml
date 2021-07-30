@@ -36,6 +36,13 @@
     recurse: yes
     mode: 0755
 
+- name: Create ~/.config/nvim/ultisnips
+  file:
+    path: ~/.config/nvim/ultisnips
+    state: directory
+    recurse: yes
+    mode: 0755
+
 - name: Check dein existence
   stat:
     path: ~/.cache/dein

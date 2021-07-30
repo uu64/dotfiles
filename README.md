@@ -51,3 +51,7 @@ Run all commands (`make install`, `make deploy`, `make test`, `make lint`) local
 $ make docker-build
 $ make docker-test
 ```
+
+## TODO
+
+- install pynvim

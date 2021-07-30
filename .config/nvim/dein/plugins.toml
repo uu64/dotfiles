@@ -165,6 +165,19 @@ hook_add = '''
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 
+[[plugins]]
+repo = 'SirVer/ultisnips'
+hook_add = '''
+  let s:config_home = empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME . '/nvim/ultisnips/'
+
+  let g:UltiSnipsSnippetDirectories  = [s:config_home]
+  let g:UltiSnipsUsePythonVersion    = 3
+  let g:UltiSnipsEditSplit           = 'normal'
+  let g:UltiSnipsExpandTrigger       = "<tab>"
+  let g:UltiSnipsJumpForwardTrigger  = "<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+'''
+
 
 # terminal
 [[plugins]]
