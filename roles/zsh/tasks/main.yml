@@ -23,7 +23,6 @@
       register: login_shell
 
     - name: Change login shell to zsh
-      become: yes
       shell: chsh {{ ansible_user }} -s $(which zsh)
       when: login_shell.stdout.find("zsh") == -1
 
