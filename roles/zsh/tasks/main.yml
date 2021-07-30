@@ -23,7 +23,7 @@
       register: login_shell
 
     - name: Change login shell to zsh
-      shell: chsh {{ ansible_user }} -s $(which zsh)
+      shell: chsh $(whoami) -s $(which zsh)
       when: login_shell.stdout.find("zsh") == -1
 
   when: ansible_os_family == "Debian"
