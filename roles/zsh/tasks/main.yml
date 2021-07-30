@@ -17,17 +17,6 @@
     update_homebrew: yes
   when: ansible_os_family == "Darwin"
 
-- block:
-    - name: Check login shell
-      shell: grep -E "^$(whoami):" /etc/passwd | cut -d ":" -f 7
-      register: login_shell
-
-    - name: Change login shell to zsh
-      shell: chsh $(whoami) -s $(which zsh)
-      when: login_shell.stdout.find("zsh") == -1
-
-  when: ansible_os_family == "Debian"
-
 - name: Check zplug existence
   stat:
     path: ~/.zplug
