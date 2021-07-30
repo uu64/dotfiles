@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-      - feature/*
-      - dependabot/*
+      - feature/**
+      - dependabot/**
 
 jobs:
   test:
