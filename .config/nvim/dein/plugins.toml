@@ -113,12 +113,14 @@ repo = 'tpope/vim-fugitive'
 repo = 'dense-analysis/ale'
 hook_add = """
   let g:ale_linters = {
-        \ 'go': ['golint', 'go vet']
+        \ 'go': ['golint', 'go vet'],
+        \ 'python': ['flake8'],
         \ }
   let g:ale_fixers = {
-        \ 'go': ['goimports']
+        \ 'go': ['goimports'],
+        \ 'python': ['black'],
         \ }
-  let g:ale_fix_on_save = 1
+  let g:ale_fix_on_save = 0
 """
 
 [[plugins]]
