@@ -74,6 +74,7 @@
   if [ "$(uname)" = "Linux" ]
   then
     run bash -c "fc-list | grep HackGen -c"
+    echo $output
     # 16 fonts are installed
     [ "${output}" = "16" ]
   elif [ "$(uname)" = "Darwin" ]

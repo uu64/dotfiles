@@ -34,13 +34,16 @@
 
         - name: Download HackGen latest release zipball
           get_url:
-            url: "{{ json_response.json.zipball_url }}"
-            dest: "{{ tmpdir.path }}/hackgen_latest.zip"
+            url: "{{ item.browser_download_url }}"
+            dest: "{{ tmpdir.path }}"
+          with_items: "{{ json_response.json.assets }}"
+          register: zipballs
 
         - name: Extract zipball
           unarchive:
-            src: "{{ tmpdir.path }}/hackgen_latest.zip"
+            src: "{{ item.dest }}"
             dest: "{{ tmpdir.path }}"
+          with_items: "{{ zipballs.results }}"
 
         - name: Get font files
           find:
