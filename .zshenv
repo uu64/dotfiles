@@ -9,6 +9,13 @@
 typeset -U PATH path
 
 
+# disable zsh path_helper
+if [ "$(uname)" = "Darwin" ]; then
+  unsetopt GLOBAL_RCS
+  export PATH="$PATH:/usr/local/bin"
+fi
+
+
 # dotfiles home directory
 export XDG_CONFIG_HOME=~/.config
 export DOTFILES_HOME="${XDG_CONFIG_HOME}/dotfiles"
