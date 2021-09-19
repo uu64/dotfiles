@@ -1,21 +1,25 @@
 {
-    "workbench.colorTheme": "Default Dark+",
-    "editor.fontFamily": "HackgenNerd Console",
-    "editor.fontSize": 14,
-    "editor.renderWhitespace": "all",
-    "vim.vimrc.enable": true,
-    "terminal.integrated.fontSize": 14,
-    "vim.leader": "<space>",
-    "workbench.iconTheme": "material-icon-theme",
-    "vim.useSystemClipboard": true,
-    "vim.statusBarColorControl": true,
+    // appearance
     "workbench.colorCustomizations": {
         "statusBar.background": "#005f5f",
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
+    "workbench.colorTheme": "Default Dark+",
     "workbench.editor.untitled.hint": "hidden",
+    "workbench.iconTheme": "material-icon-theme",
+    // editor
+    "editor.fontFamily": "HackgenNerd Console",
+    "editor.fontSize": 14,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    // integrated terminal
     "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.fontSize": 14,
     "terminal.integrated.rightClickBehavior": "paste",
-    "editor.minimap.enabled": false
+    // vscodevim
+    "vim.leader": "<space>",
+    "vim.statusBarColorControl": true,
+    "vim.useSystemClipboard": true,
+    "vim.vimrc.enable": true,
 }
