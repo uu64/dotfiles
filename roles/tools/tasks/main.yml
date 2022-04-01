@@ -1,75 +1,75 @@
-- name: Install pyenv dependencies using apt
+# - name: Install pyenv dependencies using apt
+#   become: yes
+#   apt:
+#     pkg:
+#       - build-essential
+#       - libssl-dev
+#       - zlib1g-dev
+#       - libbz2-dev
+#       - libreadline-dev
+#       - libsqlite3-dev
+#       - wget
+#       - curl
+#       - llvm
+#       - libncurses5-dev
+#       - libncursesw5-dev
+#       - xz-utils
+#       - tk-dev
+#       - libffi-dev
+#       - liblzma-dev
+#       - python-openssl
+#     state: present
+#     update_cache: yes
+#   when: ansible_os_family == "Debian"
+
+# - name: Install pyenv dependencies using brew
+#   community.general.homebrew:
+#     name:
+#       - readline
+#       - xz
+#     state: present
+#     update_homebrew: yes
+#   when: ansible_os_family == "Darwin"
+
+# - name: Install pyenv
+#   git:
+#     repo: https://github.com/pyenv/pyenv.git
+#     dest: ~/.pyenv
+#     update: no
+
+# - name: Install pyenv-virtualenv
+#   git:
+#     repo: https://github.com/pyenv/pyenv-virtualenv.git
+#     dest: ~/.pyenv/plugins/pyenv-virtualenv
+#     update: no
+
+# - name: Install rbenv
+#   git:
+#     repo: https://github.com/rbenv/rbenv.git
+#     dest: ~/.rbenv
+#     update: no
+
+# - name: Check nvm existence
+#   stat:
+#     path: ~/.nvm
+#   register: nvm
+
+# - block:
+#     - name: Download nvm installer
+#       get_url:
+#         url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh
+#         dest: /tmp/nvm_installer.sh
+
+#     - name: Install nvm
+#       command: bash /tmp/nvm_installer.sh
+
+#   when: not nvm.stat.exists
+
+- name: Install rg, bat, shellcheck and tmux using apt
   become: yes
   apt:
     pkg:
-      - build-essential
-      - libssl-dev
-      - zlib1g-dev
-      - libbz2-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - wget
-      - curl
-      - llvm
-      - libncurses5-dev
-      - libncursesw5-dev
-      - xz-utils
-      - tk-dev
-      - libffi-dev
-      - liblzma-dev
-      - python-openssl
-    state: present
-    update_cache: yes
-  when: ansible_os_family == "Debian"
-
-- name: Install pyenv dependencies using brew
-  community.general.homebrew:
-    name:
-      - readline
-      - xz
-    state: present
-    update_homebrew: yes
-  when: ansible_os_family == "Darwin"
-
-- name: Install pyenv
-  git:
-    repo: https://github.com/pyenv/pyenv.git
-    dest: ~/.pyenv
-    update: no
-
-- name: Install pyenv-virtualenv
-  git:
-    repo: https://github.com/pyenv/pyenv-virtualenv.git
-    dest: ~/.pyenv/plugins/pyenv-virtualenv
-    update: no
-
-- name: Install rbenv
-  git:
-    repo: https://github.com/rbenv/rbenv.git
-    dest: ~/.rbenv
-    update: no
-
-- name: Check nvm existence
-  stat:
-    path: ~/.nvm
-  register: nvm
-
-- block:
-    - name: Download nvm installer
-      get_url:
-        url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh
-        dest: /tmp/nvm_installer.sh
-
-    - name: Install nvm
-      command: bash /tmp/nvm_installer.sh
-
-  when: not nvm.stat.exists
-
-- name: Install ag, rg, bat, shellcheck and tmux using apt
-  become: yes
-  apt:
-    pkg:
-      - silversearcher-ag
+      # - silversearcher-ag
       # TODO
       # - ripgrep
       - bat
@@ -79,10 +79,10 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: Install ag, rg, bat, shellcheck and tmux using brew
+- name: Install rg, bat, shellcheck and tmux using brew
   community.general.homebrew:
     name:
-      - the_silver_searcher
+      # - the_silver_searcher
       - ripgrep
       - bat
       - shellcheck

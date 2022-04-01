@@ -35,10 +35,10 @@
 #   [[ "${output}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]]
 # }
 
-@test "ag is installed" {
-  run which ag
-  [[ "${status}" -eq 0 ]]
-}
+# @test "ag is installed" {
+#   run which ag
+#   [[ "${status}" -eq 0 ]]
+# }
 
 # TODO
 # # @test "rg is installed" {
