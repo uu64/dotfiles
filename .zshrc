@@ -85,14 +85,14 @@ function search_history() {
   CURSOR=$#BUFFER
 }
 
-function search_file() {
-  BUFFER="$(ag -g "" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")"
-  if [ -n "$BUFFER" ];
-  then
-    BUFFER="vi $BUFFER"
-    zle accept-line
-  fi
-}
+# function search_file() {
+#   BUFFER="$(ag -g "" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")"
+#   if [ -n "$BUFFER" ];
+#   then
+#     BUFFER="vi $BUFFER"
+#     zle accept-line
+#   fi
+# }
 
 function search_ghq() {
   BUFFER="$(ghq list -p | fzf)"
@@ -159,3 +159,6 @@ case "${OSTYPE}" in
     alias cdiff='diff -u --color'
   ;;
 esac
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
