@@ -11,21 +11,21 @@
   [ "${status}" -eq 0 ]
 }
 
-# roles/tools
-@test "pyenv is installed" {
-  export PYENV_ROOT="$HOME/.pyenv"
-  # shellcheck disable=SC2030
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  run bash -c "eval $(pyenv init -) && pyenv --version"
-  [[ "${output}" =~ pyenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
-}
+# # roles/tools
+# @test "pyenv is installed" {
+#   export PYENV_ROOT="$HOME/.pyenv"
+#   # shellcheck disable=SC2030
+#   export PATH="$PYENV_ROOT/bin:$PATH"
+#   run bash -c "eval $(pyenv init -) && pyenv --version"
+#   [[ "${output}" =~ pyenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
+# }
 
-@test "rbenv is installed" {
-  # shellcheck disable=SC2031
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  run bash -c "eval $(rbenv init -) && rbenv --version"
-  [[ "${output}" =~ rbenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
-}
+# @test "rbenv is installed" {
+#   # shellcheck disable=SC2031
+#   export PATH="$HOME/.rbenv/bin:$PATH"
+#   run bash -c "eval $(rbenv init -) && rbenv --version"
+#   [[ "${output}" =~ rbenv\ [0-9]+\.[0-9]+\.[0-9]+ ]]
+# }
 
 # TODO: The following tests fail only on github actions
 # @test "nvm is installed" {
