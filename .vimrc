@@ -8,7 +8,7 @@
 if &compatible
   set nocompatible
 endif
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python'
+let g:python3_host_prog = '/usr/bin/python3'
 
 
 " Appearance
@@ -132,6 +132,9 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
+filetype plugin indent on
+syntax enable
+
 if dein#check_install()
   call dein#install()
 endif
@@ -141,9 +144,4 @@ endif
 colorscheme iceberg
 set termguicolors
 set background=dark
-syntax on
-
-
-" finally
-filetype plugin indent on
 
