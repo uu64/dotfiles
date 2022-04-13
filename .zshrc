@@ -137,6 +137,7 @@ complete -C "$(which aws_completer)" aws
 # alias
 alias la='ls -A'
 alias ll='ls -l'
+alias history='history -i'
 
 alias less='bat'
 alias diff='diff -u'
