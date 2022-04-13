@@ -1,0 +1,8 @@
+github:
+- name: yuru7/HackGen
+  description: HackGen is a composite font of Hack and GenJyuu-Gothic.
+  owner: yuru7
+  repo: HackGen
+  release:
+    name: HackGen
+    tag: v2.5.3
