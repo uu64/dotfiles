@@ -4,32 +4,34 @@
 #  _ / /\__ \ | | | | | (__
 # (_)___|___/_| |_|_|  \___|
 
+
 # init
-source ~/.zplug/init.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 
-# zplug
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
-zplug "mafredri/zsh-async", from:github
-zplug "plugins/git", from:oh-my-zsh
-# zplug "sindresorhus/pure, use:pure.zsh," from:github, as:theme
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
+# zinit
+zinit light-mode for \
+    sindresorhus/pure \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-zplug load
+zinit wait lucid blockf light-mode for \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-history-substring-search \
+    zdharma-continuum/fast-syntax-highlighting \
+    atload"async_init" mafredri/zsh-async \
+    from"gh-r" sbin"fzf" junegunn/fzf-bin \
+    pick"init.sh" b4b4r07/enhancd
 
-
-# theme
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship.toml
+zinit snippet OMZP::git
 
 
 # history
@@ -45,54 +47,21 @@ setopt nonomatch
 
 
 # complement
-autoload -U compinit && compinit
 autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 zmodload zsh/complist
-zstyle ':completion:*:default' menu select=2
-bindkey "^[[Z" reverse-menu-complete
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-
-
-# sindresorhus/pure
-if [ -n "${SSH_CONNECTION}" ];
-then
-  PURE_PROMPT_SYMBOL='$'
-fi
-
-
-# zsh-users/zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^P' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey '^N' history-substring-search-down
-
-
-# b4b4r07/enhancd
-export ENHANCD_FILTER=fzf
-export ENHANCD_DISABLE_HOME=1
-export ENHANCD_DOT_ARG=...
-export ENHANCD_HYPHEN_NUM=100
+zstyle ':completion:*' menu select=2
 
 
 # junegunn/fzf-bin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--exact --layout reverse --no-sort"
+
 
 function search_history() {
   BUFFER=$(history -n -r 1 | fzf)
   CURSOR=$#BUFFER
 }
-
-# function search_file() {
-#   BUFFER="$(ag -g "" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}")"
-#   if [ -n "$BUFFER" ];
-#   then
-#     BUFFER="vi $BUFFER"
-#     zle accept-line
-#   fi
-# }
 
 function search_ghq() {
   BUFFER="$(ghq list -p | fzf)"
@@ -120,14 +89,32 @@ fbr() {
   git checkout $(echo "$branch" | sed "s/\* //" | awk '{print $1}' | sed "s#remotes/[^/]*/##")
 }
 
+
+# bindkeys
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey "^[[Z" reverse-menu-complete
+
+# zsh-users/zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^P' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^N' history-substring-search-down
+
+# search
 zle -N search_history
-bindkey '^r' search_history
-
-# zle -N search_file
-# bindkey '^[' search_file
-
 zle -N search_ghq
+bindkey '^R' search_history
 bindkey '^[' search_ghq
+
+
+# b4b4r07/enhancd
+export ENHANCD_FILTER=fzf
+export ENHANCD_DISABLE_HOME=1
+export ENHANCD_DOT_ARG=...
+export ENHANCD_HYPHEN_NUM=100
 
 
 # awscli
@@ -160,7 +147,3 @@ case "${OSTYPE}" in
   ;;
 esac
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
