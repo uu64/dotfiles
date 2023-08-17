@@ -1,3 +1,0 @@
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-on_ft = ['markdown', 'txt']
