@@ -1,0 +1,113 @@
+* {
+	border: none;
+	border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 12px;
+    min-height: 0;
+    transition: 0.3s;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+window#waybar.hidden {
+	opacity: 0.2;
+}
+
+.modules-left {
+    margin-left: 5px;
+}
+
+.modules-right {
+    margin-right: 5px;
+}
+
+/* common */
+#battery,
+#bluetooth,
+#clock,
+#network,
+#pulseaudio,
+#workspaces,
+#custom-power {
+    background: #1e1e2e;
+    border: 1px solid #181825;
+    opacity: 0.8;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+/* modules-left */
+#custom-power {
+	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 4px;
+	border-radius: 20px;
+    color: #89DCEB;
+    border-radius: 20px;
+}
+
+#workspaces {
+    border-radius: 20px;
+    margin-left: 5px
+}
+
+#workspaces button:hover {
+    border: none;
+    box-shadow: none;
+    border-bottom: 2px solid #89b4fa;
+    background: none;
+    background-color: transparent;
+}
+
+#workspaces button.active {
+    color: #a6e3a1;
+}
+
+/* module-right */
+#pulseaudio {
+    color: #89b4fa;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 20px 0px 0px 20px;
+}
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 5px;
+    padding-right: 8px;
+}
+
+#bluetooth {
+    color: #89b4fa;
+    border-radius: 20px;
+    margin-right: 5px
+}
+
+#network {
+    color: #f9e2af;
+    border-radius: 20px 0px 0px 20px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#battery {
+    color: #a6e3a1;
+    border-radius: 0 20px 20px 0;
+    margin-right: 5px;
+    border-left: 0px;
+}
+
+#clock {
+    color: #fab387;
+    border-radius: 20px;
+    border-right: 0px;
+    transition: 0.3s;
+    padding-left: 7px;
+}

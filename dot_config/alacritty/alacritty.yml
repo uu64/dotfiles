@@ -1,0 +1,14 @@
+window:
+  padding:
+    x: 16
+    y: 8
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+selection:
+  save_to_clipboard: true
+
+mouse_bindings:
+ - { mouse: Right,  action: PasteSelection }

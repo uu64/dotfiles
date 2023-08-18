@@ -1,0 +1,83 @@
+#            _
+#    _______| |__  _ __ ___
+#   |_  / __| '_ \| '__/ __|
+#  _ / /\__ \ | | | | | (__
+# (_)___|___/_| |_|_|  \___|
+
+
+# history
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=100000
+SAVEHIST=1000000
+
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt nonomatch
+
+
+# complement
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+zmodload zsh/complist
+zstyle ':completion:*' menu select=2
+
+
+# widgets
+function search_history() {
+  BUFFER=$(history -n -r 1 | fzf)
+  CURSOR=$#BUFFER
+}
+zle -N search_history
+
+function search_ghq() {
+  BUFFER="$(ghq list -p | fzf)"
+  if [ -n "$BUFFER" ];
+  then
+    BUFFER="cd $BUFFER"
+    zle accept-line
+  fi
+}
+zle -N search_ghq
+
+
+# key bindings
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey "^[[Z" reverse-menu-complete
+bindkey '^[[A' history-substring-search-up
+bindkey '^P' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^N' history-substring-search-down
+bindkey '^R' search_history
+bindkey '^[' search_ghq
+
+
+# alias
+alias ls='exa'
+alias ll='ls -l'
+alias la='ls -a'
+alias less='bat'
+alias diff='diff -u'
+alias vi='nvim'
+alias vimdiff='nvim -d'
+
+
+# environment variables
+export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
+export AQUA_GLOBAL_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/aqua/aqua.yaml
+export SHELDON_DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}/sheldon/
+export SHELDON_CONFIG_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/sheldon/plugins.toml
+
+
+# init sheldon zsh plugin manager
+eval "$(sheldon source)"
+
+
+# init theme
+fpath+=($SHELDON_DATA_DIR/repos/github.com/sindresorhus/pure)
+autoload -U promptinit; promptinit
+prompt pure
