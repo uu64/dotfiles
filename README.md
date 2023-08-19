@@ -6,7 +6,7 @@
 - zsh
 - [aqua](https://aquaproj.github.io/)
 - [chezmoi](https://www.chezmoi.io/)
-- [HackGen](https://github.com/yuru7/HackGen)
+- [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
 
 ## Setup
 

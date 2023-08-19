@@ -1,11 +1,19 @@
 font:
   normal:
-    family: HackGen35 Console NF
+    family: JetBrainsMono NF
     style: Regular
 
   bold:
-    family: HackGen35 Console NF
+    family: JetBrainsMono NF SemiBold
     style: Bold
+
+  italic:
+    family: JetBrainsMono NF
+    style: Italic
+
+  bold_italic:
+    family: JetBrainsMono NF SemiBold
+    style: Bold Italic
 
 window:
   padding:
