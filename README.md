@@ -6,8 +6,11 @@
 - zsh
 - [aqua](https://aquaproj.github.io/)
 - [chezmoi](https://www.chezmoi.io/)
+- [HackGen](https://github.com/yuru7/HackGen)
 
-## How to use
+## Setup
+
+### shell
 
 - setup authentication to github
 
@@ -22,6 +25,12 @@
 	$ aqua i -a
 	```
 
-## About archlinux desktop
+### vim
+
+- install [vim-plug](https://github.com/junegunn/vim-plug)
+
+- call `:PlugInstall` on vim
+
+### linux desktop
 
 TODO
