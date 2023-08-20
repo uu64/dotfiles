@@ -17,7 +17,6 @@
 - deploy dotfiles
 	```
 	$  chezmoi init --apply uu64
-
 	```
 
 - install tools
