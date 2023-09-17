@@ -21,3 +21,4 @@ packages:
 - name: sharkdp/fd@v8.7.0
 - name: rossmacarthur/sheldon@0.7.3
 - name: x-motemen/ghq@v1.4.2
+- name: aws/aws-cli@2.13.19
