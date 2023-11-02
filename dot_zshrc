@@ -53,7 +53,7 @@ bindkey '^P' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^N' history-substring-search-down
 bindkey '^R' search_history
-bindkey '^[' search_ghq
+bindkey '^]' search_ghq
 
 
 # alias

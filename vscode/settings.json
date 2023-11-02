@@ -1,0 +1,27 @@
+{
+    // appearance
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f00af",
+        "statusBar.noFolderBackground": "#5f00af",
+        "statusBar.debuggingBackground": "#5f00af",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff"
+    },
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.iconTheme": "material-icon-theme",
+    // editor
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontSize": 12,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    // integrated terminal
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.rightClickBehavior": "paste",
+    // vscodevim
+    "vim.leader": "<space>",
+    "vim.statusBarColorControl": true,
+    "vim.useSystemClipboard": true,
+    "vim.vimrc.enable": true,
+    "files.trimTrailingWhitespace": true
+}
