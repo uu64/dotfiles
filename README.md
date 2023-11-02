@@ -6,6 +6,7 @@
 - zsh
 - [aqua](https://aquaproj.github.io/)
 - [chezmoi](https://www.chezmoi.io/)
+- [sheldon](https://github.com/rossmacarthur/sheldon/)
 - [JetBrains Mono](https://www.jetbrains.com/lp/mono/)
 
 ## Setup
