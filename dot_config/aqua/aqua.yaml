@@ -21,3 +21,4 @@ packages:
 - name: sharkdp/fd@v8.7.1
 - name: x-motemen/ghq@v1.4.2
 - name: aws/aws-cli@2.13.30
+- name: junegunn/fzf/fzf-tmux@0.43.0
