@@ -82,16 +82,22 @@ alias vimdiff='nvim -d'
 
 
 # environment variables
+typeset -U PATH path
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
-export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
 export AQUA_GLOBAL_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/aqua/aqua.yaml
 export SHELDON_DATA_DIR=${XDG_DATA_HOME:-$HOME/.local/share}/sheldon/
 export SHELDON_CONFIG_FILE=${XDG_CONFIG_HOME:-$HOME/.config}/sheldon/plugins.toml
 
+export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
+
 
 # init sheldon zsh plugin manager
 eval "$(sheldon source)"
+
+
+# init asdf
+. "$HOME/.asdf/asdf.sh"
 
 
 # init theme
